@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <title>Document</title>
+   <link rel="stylesheet" href="css/todo.css">
+</head>
+
+<body>
+    <div id="divtodomain">
+        <div id="divadd">
+            <form class="addtodo_create" id="addform">
+                <div class="divinput">
+                    <input id="txtTodo" type="text" name="task" placeholder="Enter your task.." required />
+                    <span class="tooltip" id="taskTooltip">Please enter task</span>
+                    <br>
+                    <select class="assignto" id="ddassignto" name="assignto">
+                        <option value="Unassigned">Unassigned</option>
+                        <option value="Mounika">Mounika</option>
+                        <option value="Nisha">Nisha</option>
+                        <option value="Saranya">Saranya</option>
+                        <option value="Sindhu">Sindhu</option>
+                        <option value="Umaya">Umaya</option>
+                    </select>
+                </div>
+                <div class="divsubmit">
+                    <input id="btnadd" type="button" value="Add" />
+                </div>
+
+            </form>
+        </div>
+        <div id="divfilter">
+            <div id="divbutton"><input id="btnall" type="button" class="buttonAll allbutton active" role="button"
+                    value="All"><input id="btnopen" type="button" class="buttonAll openbutton" role="button"
+                    value="Open"><input type="button" id="btncomp" class="buttonAll compbutton" role="button"
+                    value="Completed">
+            </div>
+            <div id="divswitch">
+                <div class="divswitchtext"><span id="swithText">Swith to List View:</span></div>
+                <div class="divslider">
+                    <label class="switch">
+                        <input type="checkbox" id="chkSlide" checked>
+                        <span class="slider round"></span>
+                    </label>
+                </div>
+            </div>
+        </div>
+        <div id="divtodolist"></div>
+        <div id="divpaging">
+            <div id="divleftpaging">
+                <button id="prevButton">
+                    <i class="fa fa-angle-double-left pagenavi"></i>&nbsp;Previous</button>
+            </div>
+            <div id="divmiddlepaging">
+                <p id="pageInfo"></p>
+            </div>
+            <div id="divrightpaging">
+
+                <button id="nextButton">Next&nbsp;<i class="fa fa-angle-double-right pagenavi"></i></button>
+            </div>
+
+        </div>
+    </div>
+</body>
+<script src="js/todo.js"></script>
+
+</html>

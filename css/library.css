@@ -1,0 +1,246 @@
+ body {
+    margin: 0px;
+     font-family: Tahoma, sans-serif;
+     justify-content: space-between;
+ }
+
+ * {
+     box-sizing: border-box;
+ }
+
+ /* The browser window */
+ .libmain {
+     width: 100%;
+ }
+
+ #container {
+     position: absolute;
+     border-top-left-radius: 7px;
+     border-top-right-radius: 7px;
+     width: 100%;
+     margin: auto;
+ }
+
+ /* Container for columns and the top "toolbar" */
+ #containerheader {
+     width: 100%;
+     padding: 10px;
+     height: 50px;
+     background: rgb(8, 117, 233);
+     border-top-left-radius: 4px;
+     border-top-right-radius: 4px;
+     cursor: move;
+ }
+
+ /* Create three unequal columns that floats next to each other */
+ .part {
+     float: left;
+ }
+
+ .left {
+     width: 5%;
+     text-align: left;
+ }
+
+ .welcomeleft {
+     width: 30%;
+     text-align: left;
+     color: #050a0f;
+     font-size: 15px;
+     font-weight: 100;
+     text-align: left;
+     text-shadow: 0 1px 1px rgba(0, 0, 0, 0.1);
+     vertical-align: middle;
+     padding-left: 4px;
+ }
+
+ .right {
+     width: 5%;
+ }
+
+ .middle {
+     color: aliceblue;
+     font-size: 20px;
+     padding-left: 20px;
+     width: 90%;
+ }
+
+ /* Clear floats after the columns */
+ .row:after {
+     content: "";
+     display: table;
+     clear: both;
+ }
+
+ /* Three dots */
+ .dot {
+     margin-top: 4px;
+     height: 22px;
+     width: 22px;
+     padding-left: 7px;
+     background-color: #bbb;
+     border-radius: 50%;
+     display: inline-block;
+     background: #ED594A;
+ }
+
+ /* Style the input field */
+ input[type=text] {
+     width: 90%;
+     height: 40px;
+     border: none;
+     border-bottom: 2px solid black;
+ }
+
+ /* Page content */
+ .content {
+     padding: 10px;
+ }
+
+ .table-fill {
+     border: 1px solid rgb(129, 130, 130);
+     background: white;
+     border-radius: 3px;
+     border-collapse: collapse;
+     margin: auto;
+     width: 100%;
+ }
+
+ th,
+ .footer {
+     color: #050a0f;
+     background: #9db8e6;
+     height: 50px;
+     font-size: 15px;
+     font-weight: 100;
+     text-align: left;
+     text-shadow: 0 1px 1px rgba(0, 0, 0, 0.1);
+     vertical-align: middle;
+
+ }
+
+ .header {
+     color: #D5DDE5;
+     background: #1b1e24;
+     border-bottom: 1px solid #9ea7af;
+     border-right: 1px solid #343a45;
+     border-top-left-radius: 16px;
+     border-top-right-radius: 16px;
+     height: 45px;
+     font-size: 20px;
+     font-weight: 100;
+     text-align: left;
+     text-shadow: 0 1px 1px rgba(0, 0, 0, 0.1);
+     vertical-align: middle;
+ }
+
+ .row {
+     border-top: 1px solid #C1C3D1;
+     border-bottom: 1px solid #C1C3D1;
+     height: 40px;
+     color: #666B85;
+     font-size: 15px;
+     font-weight: normal;
+     text-shadow: 0 1px 1px rgba(256, 256, 256, 0.1);
+ }
+
+ .row:hover {
+     background: #4E5066;
+     color: #FFFFFF;
+     border-top: 1px solid #22262e;
+ }
+
+ .text-center {
+     text-align: center;
+ }
+
+ .text-right {
+     text-align: right;
+ }
+
+ .text-left {
+     text-align: left;
+ }
+
+ .pad-15 {
+     padding: 15px;
+ }
+
+ .pad-right-40 {
+     padding-right: 40px;
+ }
+
+ .pad-left-40 {
+     padding-left: 40px;
+ }
+
+ .wid-110 {
+     width: 115px;
+ }
+
+ .delete {
+     cursor: pointer;
+ }
+
+ #divadd {
+     height: 40px;
+     text-align: right;
+     width: 16%;
+ }
+
+ input[type="button"],
+ input[type="submit"] {
+     width: 100px;
+     height: 30px;
+     background-color: #9db8e6;
+     border: 0px;
+     cursor: pointer;
+ }
+
+ input[type="button"]:hover,
+ input[type="submit"]:hover {
+     background-color: #4E5066;
+     color: #FFFFFF;
+ }
+
+ label {
+     color: #666B85;
+     font-size: 15px;
+     font-weight: normal;
+     text-shadow: 0 1px 1px rgba(256, 256, 256, 0.1);
+ }
+
+ .red {
+     color: red;
+ }
+
+ input:focus::placeholder {
+     color: transparent;
+ }
+
+ .bookicon {
+     font-size: 30px;
+     color: #ffffff;
+ }
+
+ .closeicon {
+     cursor: pointer;
+ }
+
+ #txtBox {
+     display: inline;
+     width: 150px;
+     height: 30px;
+     border: none;
+     border-bottom: 2px solid rgb(117, 114, 114);
+ }
+
+ .divhead {
+     display: flex;
+     width: 100%;
+ }
+
+ #divsearch {
+     width: 54%;
+     text-align: right;
+ }

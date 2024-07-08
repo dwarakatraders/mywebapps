@@ -1,0 +1,85 @@
+body {
+   
+    font-family: Tahoma, sans-serif;
+    justify-content: space-between;
+    margin: 0px;
+}
+table
+{
+    border: 0px;
+    border-spacing: 0px;
+    width: 100%;
+}
+
+td,
+tr {
+    padding: 0;
+    margin: 0;
+}
+
+input {
+    text-align: center;
+    align-items: center;
+    color: #223850;
+    font-size: 18px;
+    background-color:rgb(120, 182, 248);
+    font-family: 'Noto Sans', sans-serif;
+}
+
+#divCalcBox {
+    width: 207px;
+    height: 252px;
+    background-color: #3d6289;
+}
+
+#divMain {
+    width: 100%;
+}
+
+#idAnswerBox {
+    text-align: right;
+    width: 201px;
+    height: 41px;
+    font-size: 30px;
+    color:#223850;
+    background-color: #fdfefe;
+}
+
+#idExpression {
+    text-align: right;
+    width: 202px;
+    height: 20px;
+    font-size: 10px;
+    color: #fdfefe;
+}
+
+
+.commoninput {
+    width: 52px;
+    height: 42px;
+}
+
+.commoninput:hover {
+    background-color: #3d6289;
+    color: #fdfefe;
+}
+
+.equal {
+    width: 52px;
+    height: 84px;
+    background-color: rgb(209, 158, 28);
+}
+
+.equal:hover {
+    color: #fdfefe;
+    background-color: rgb(191, 158, 76);
+}
+
+.zero {
+    width: 104px;
+    height: 42px;
+}
+
+.zero:hover {
+    background-color: #3d6289;
+}

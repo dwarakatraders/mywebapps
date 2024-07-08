@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Calculator</title>
+    <link href='https://fonts.googleapis.com/css?family=Noto Sans' rel='stylesheet'>
+    <link href="css/calc.css" rel="stylesheet">
+</head>
+
+<body>
+    <div id="divMain">      
+
+        <div id="divCalcBox">
+            <table>
+                <tr>
+                    <td colspan="4"> </td>
+                </tr>
+                <tr>
+                    <td colspan="4">
+                        <!--<input id="idExpression" type="text" readonly name="answerBox">-->
+                        <input type="text" name="answerBox" id="idFirst" hidden="true" value="0">
+                        <input type="text" name="answerBox" id="idOperator" hidden="true" value="0">
+                        <input id="idAnswerBox" type="text" readonly name="answerBox" value="0">
+                    </td>
+                </tr>
+                <tr>
+                    <td><input type="button" value="C" class="commoninput" onclick="clearInput()"></td>
+                    <td><input type="button" value="+/-" class="commoninput" onclick="display('+/-')"
+                            onkeydown="display('+/-')"></td>
+                    <td><input type="button" value="/" class="commoninput" onclick="display('/')"
+                            onkeydown="display('/')"></td>
+                    <td><input type="button" value="X" class="commoninput" onclick="display('*')"
+                            onkeydown="display('*')"></td>
+                </tr>
+                <tr>
+                    <td><input type="button" value="7" class="commoninput" onclick="display('7')"
+                            onkeydown="display('7')"></td>
+                    <td><input type="button" value="8" class="commoninput" onclick="display('8')"
+                            onkeydown="display('8')"></td>
+                    <td><input type="button" value="9" class="commoninput" onclick="display('9')"
+                            onkeydown="display('9')"></td>
+                    <td><input type="button" value="-" class="commoninput" onclick="display('-')"
+                            onkeydown="display('-')"></td>
+                </tr>
+                <tr>
+                    <td><input type="button" value="4" class="commoninput" onclick="display('4')"
+                            onkeydown="display('4')"></td>
+                    <td><input type="button" value="5" class="commoninput" onclick="display('5')"
+                            onkeydown="display('5')"></td>
+                    <td><input type="button" value="6" class="commoninput" onclick="display('6')"
+                            onkeydown="display('6')"></td>
+                    <td><input type="button" value="+" class="commoninput" onclick="display('+')"
+                            onkeydown="display('+')"></td>
+                </tr>
+                <tr>
+                    <td><input type="button" value="1" class="commoninput" onclick="display('1')"
+                            onkeydown="display('1')"></td>
+                    <td><input type="button" value="2" class="commoninput" onclick="display('2')"
+                            onkeydown="display('2')"></td>
+                    <td><input type="button" value="3" class="commoninput" onclick="display('3')"
+                            onkeydown="display('3')"></td>
+                    <td rowspan="2"><input type="button" value="=" class="equal" onclick="display('=')"></td>
+                </tr>
+                <tr>
+                    <td colspan="2"><input type="button" value="0"  class="zero" onclick="display('0')"
+                            onkeydown="display('0')"></td>
+                    <td><input type="button" value="." class="commoninput" onclick="display('.')"
+                            onkeydown="display('.')"></td>
+                </tr>
+            </table>
+        </div>
+
+
+    </div>
+    <script src="js/calc.js"></script>
+</body>
+
+</html>

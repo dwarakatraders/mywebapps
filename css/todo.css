@@ -1,0 +1,351 @@
+body {
+    font-family: Tahoma, sans-serif;
+    margin: 0px;
+}
+
+#divtodomain {
+    padding-top: 15px;
+    padding-left: 28px;
+    min-height: 450px;
+}
+
+input[type='text'],
+select {
+    display: block;
+    width: 450px;
+    height: 40px;
+    padding: 8px 8px;
+    line-height: 25px;
+    font-size: 17px;
+    font-weight: 500;
+    font-family: inherit;
+    border-radius: 9px;
+    color: var(--input-color);
+    border: 1px solid #3e3e3e;
+    background: #fff;
+    transition: border .3s ease;
+
+
+    &:focus {
+        outline: none;
+        border-color: rgb(8, 117, 233);
+    }
+}
+
+/* Placeholder style */
+input[type='text']::placeholder {
+    color: #707070;
+}
+
+/* Focus style */
+
+select:focus {
+    border-color: rgb(8, 117, 233);
+}
+
+#divadd {
+    width: 100%;
+    display: flex;
+}
+
+#btnadd {
+    font-size: 18px;
+    width: 70px;
+    background-color: #0875e9;
+    border-radius: 17px;
+    color: white;
+    border: 0px;
+    cursor: pointer;
+    height: 55px;
+}
+
+#divtodolist {
+    width: 93%;
+    border: 2px solid rgb(165, 164, 164);
+    border-radius: 17px;
+    background: radial-gradient(circle, rgba(255, 255, 255, 1) 0%, rgba(255, 255, 255, 1) 55%, #e2e2e2 100%);
+}
+
+#divfilter {
+    padding-top: 20px;
+    height: 50px;
+    width: 100%;
+}
+
+#divbutton {
+    float: left;
+    width: 61%
+}
+
+#divswitch {
+    float: right;
+    width: 39%
+}
+
+#swithText {
+    font-size: 14px;
+}
+.divswitchtext
+{
+    text-align: right;
+    padding-right: 3px;
+    padding-top: 3px;
+    float: left;
+    width: 55%
+}
+.divslider
+{
+    float: right;
+    width: 40%
+}
+
+
+.table-todo {
+    border-radius: 3px;
+    border-collapse: collapse;
+    margin: 0px;
+    width: 100%;
+    max-width: 600px;
+}
+
+tr {
+    height: 18px;
+    color: #666B85;
+    font-size: 15px;
+    font-weight: normal;
+    text-shadow: 0 1px 1px rgba(256, 256, 256, 0.1);
+}
+
+.pad-left-30 {
+    padding-left: 30px;
+    text-wrap:wrap;
+    max-width: 600px;
+}
+
+.pad-left-5 {
+    padding-left: 5px;
+}
+
+.pad-right-15 {
+    padding-right: 2px;
+
+}
+
+.buttonAll {
+    align-items: center;
+    background-color: #686869;
+    background-image: linear-gradient(1deg, #686869, #e2e2e2 99%);
+    background-size: calc(100% + 20px) calc(100% + 20px);
+    border-width: 0;
+    box-sizing: border-box;
+    color: #FFFFFF;
+    cursor: pointer;
+    display: inline-flex;
+    font-family: CircularStd, sans-serif;
+    font-size: 1rem;
+    height: auto;
+    justify-content: center;
+    line-height: 1.5;
+    padding: 6px 20px;
+    position: relative;
+    text-align: center;
+    transition: background-color .2s, background-position .2s;
+    touch-action: manipulation;
+    vertical-align: top;
+}
+
+.active {
+    background-color: #3EB2FD;
+    background-image: linear-gradient(1deg, #4F58FD, rgb(8, 117, 233) 99%);
+    outline: none;
+}
+
+.buttonAll:hover {
+    background-position: -20px -20px;
+}
+
+.allbutton {
+    border-top-left-radius: 100px;
+    border-bottom-left-radius: 100px;
+}
+
+.openbutton {
+    border-radius: 0px;
+}
+
+.compbutton {
+
+    border-top-right-radius: 100px;
+    border-bottom-right-radius: 100px;
+}
+
+.switch {
+    position: relative;
+    display: inline-block;
+    width: 60px;
+    height: 34px;
+}
+
+.switch input {
+    opacity: 0;
+    width: 0;
+    height: 0;
+}
+
+.slider {
+    position: absolute;
+    cursor: pointer;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: #ccc;
+    -webkit-transition: .4s;
+    transition: .4s;
+}
+
+.slider:before {
+    position: absolute;
+    content: "";
+    height: 26px;
+    width: 26px;
+    left: 4px;
+    bottom: 4px;
+    background-color: white;
+    -webkit-transition: .4s;
+    transition: .4s;
+}
+
+input:checked+.slider {
+    background-color: #0875e9;
+}
+
+input:focus+.slider {
+    box-shadow: 0 0 1px #0875e9;
+}
+
+input:checked+.slider:before {
+    -webkit-transform: translateX(26px);
+    -ms-transform: translateX(26px);
+    transform: translateX(26px);
+}
+
+/* Rounded sliders */
+.slider.round {
+    border-radius: 34px;
+}
+
+.slider.round:before {
+    border-radius: 50%;
+}
+
+.strike-out {
+    text-decoration: line-through;
+}
+
+.addtodo_create {
+    width: 88%;
+    padding: 15px;
+    text-align: center;
+    display: flex;
+    flex-direction: row;
+    gap: 10px;
+    line-height: 15px;
+    vertical-align: middle;
+
+    border: 2px solid rgb(165, 164, 164);
+    border-radius: 17px;
+    background: radial-gradient(circle, rgba(255, 255, 255, 1) 0%, rgba(255, 255, 255, 1) 55%, #e2e2e2 100%);
+}
+
+.pad-zero {
+    padding: 0px;
+    line-height: 0px;
+    margin: 0px;
+}
+
+.divinput {
+    float: left;
+    width: 77%
+}
+
+.divsubmit {
+    padding-left: 27px;
+    padding-TOP: 26px;
+    float: right;
+    width: 25%
+}
+
+.assignto {
+    float: left;
+    width: 469px;
+}
+
+/* Tooltip container */
+.tooltip {
+    display: none;
+    position: absolute;
+    background-color: #333;
+    color: #fff;
+    padding: 5px 10px;
+    border-radius: 5px;
+    font-size: 14px;
+    white-space: nowrap;
+}
+
+/* Show tooltip */
+.tooltip.show {
+    display: block;
+}
+
+#prevButton {
+    vertical-align: middle;
+    font-size: 16px;
+    border: 1px solid #333;
+    border-radius: 30px;
+    width: 150px;
+    height: 30px;
+}
+
+#nextButton {
+    width: 150px;
+    height: 30px;
+    font-size: 15px;
+    border: 1px solid #333;
+    border-radius: 30px;
+    vertical-align: middle;
+}
+
+#divpaging {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 94%;
+    margin-top: 1px;
+
+}
+
+#divleftpaging,
+#divmiddlepaging,
+#divrightpaging {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#divleftpaging {
+    justify-content: flex-start;
+}
+
+#divrightpaging {
+    justify-content: flex-end;
+}
+
+#pageInfo {
+    font-size: 16px;
+}
+.pagenavi
+{
+    font-size:18px; color: #333;
+}

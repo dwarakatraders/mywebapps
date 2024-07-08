@@ -1,0 +1,13 @@
+{
+    "Todos": [
+        { "id": 1, "task": "Complete the Java Assignment", "status": "Completed", "assignto":"Unassigned", "createdon": "20/06/2024, 03:39:55 PM", "completedon": "24/06/2024, 11:34:11 AM" },
+        { "id": 2, "task": "Study Automation Interview question", "status": "Open", "assignto":"Mounika", "createdon": "22/06/2024, 05:34:23 PM", "completedon": "" },
+        { "id": 3, "task": "Do Web Application", "status": "Open", "assignto":"Nisha", "createdon": "23/06/2024, 02:11:11 PM", "completedon": "" },
+        { "id": 4, "task": "Learn CSS Grid", "status": "Open", "assignto":"Nisha", "createdon": "24/06/2024, 01:45:00 PM", "completedon": "" },
+        { "id": 5, "task": "Review PRs", "status": "Completed", "assignto":"Mounika", "createdon": "25/06/2024, 09:30:00 AM", "completedon": "26/06/2024, 05:00:00 PM" },
+        { "id": 6, "task": "Prepare Presentation", "status": "Open", "assignto":"Saranya", "createdon": "26/06/2024, 11:00:00 AM", "completedon": "" },
+        { "id": 7, "task": "Write Blog Post", "status": "Completed", "assignto":"Sindhu", "createdon": "27/06/2024, 02:00:00 PM", "completedon": "28/06/2024, 01:00:00 PM" },
+        { "id": 8, "task": "Fix Bugs", "status": "Open", "assignto":"Umaya", "createdon": "28/06/2024, 03:00:00 PM", "completedon": "" }
+    
+    ]
+}

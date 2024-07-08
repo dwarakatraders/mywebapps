@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <title>Library Management</title>
+    <link rel="Stylesheet" href="css/library.css">
+</head>
+
+<body onload="displayBooks();">
+    <div class="libmain">
+        <div id="container"> 
+            <div class="content">
+                <div class="divhead">
+                    <div class="part welcomeleft">Welcome Admin!!</div>
+                    <div id="divsearch"></div>
+                    <div id="divadd"></div>
+                </div>
+                <div id="divpage"></div>
+                <div id="myForm">
+
+                    <table class="table-fill">
+                        <tr>
+                            <th colspan="2">&nbsp;&nbsp;Add New Book</th>
+                        </tr>
+                        <tr>
+                            <td class="pad-15 wid-110"><label>Book Name</label><span class="red">*</span></td>
+                            <td class="pad-15"><input type="text" placeholder="Enter Book Name" name="bookname"
+                                    id="inbookname"><label id="lblbookname" class="red" style="display: none;">Please
+                                    fill Book Name</label>
+                                <label id="id" style="display: none;"></label>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="pad-15">
+                                <label>Author</label><span class="red">*</span>
+                            </td>
+                            <td class="pad-15">
+                                <input type="text" placeholder="Author Name" name="author" id="inauthorname">
+                                <label id="lblauthorname" class="red" style="display: none;">Please fill Author
+                                    Name</label>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="pad-15">
+                                <label>Number of pages</label><span class="red">*</span>
+                            </td>
+                            <td class="pad-15">
+                                <input type="text" placeholder="Number of pages" name="pages" id="innopages"
+                                    inputmode="numeric">
+                                <label id="lblnopages" class="red" style="display: none;">Please fill valid Number of
+                                    pages</label>
+
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="pad-15">
+                                <label>Status</label>
+                            </td>
+                            <td class="pad-15">
+                                <input type="radio" id="rdcheckin" name="status" value="Checked-in" checked
+                                    required><label for="status">Checked-in</label>
+                                <input type="radio" id="rdcheckout" name="status" value="Checked-out" required><label
+                                    for="status">Checked-out</label>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td colspan="2" class="pad-15 text-center">
+                                <input type="submit" value="Save" onclick="saveBook()">
+                                <input type="button" onclick="closeForm()" value="Close">
+                            </td>
+                        </tr>
+                    </table>
+
+                </div>
+            </div>
+        </div>
+    </div>
+   <script src="js/library.js"></script>
+</body>
+
+</html>
