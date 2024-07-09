@@ -89,14 +89,27 @@ body {
 .right {
     width: 5%;
 }
-
 .middle {
     color: aliceblue;
     font-size: 20px;
     padding-left: 20px;
     width: 90%;
 }
+.leftcalc {
+    width: 10%;
+    text-align: left;
+}
 
+.rightcalc {
+    width: 5%;
+}
+
+.middlecalc {
+    color: aliceblue;
+    font-size: 20px;
+    padding-left: 20px;
+    width: 80%;
+}
 .dot {
     margin-top: 4px;
     height: 22px;

@@ -18,6 +18,7 @@ addbutton.addEventListener('click', () => {
     document.getElementById('rdcheckin').checked = true;
     document.getElementById('rdcheckout').checked = false;
     document.getElementById('txtBox').value = '';
+    document.getElementById('txtBox').style.display = 'none';
 });
 document.getElementById('divsearch').append(searchbox);
 document.getElementById('divadd').append(addbutton);
@@ -54,7 +55,8 @@ function findBooks() {
     bindBooks(arrfind);
 }
 function resetSearch() {
-    document.getElementById('txtBox').value = '';
+    document.getElementById('txtBox').value = '';    
+    document.getElementById('txtBox').style.display = 'block';
     document.getElementById('txtBox').dispatchEvent(new Event('keyup'));
 }
 function displayBooks() {
@@ -96,7 +98,8 @@ function deleteBook(id) {
 }
 
 function editBook(id, name, author, status, pages) {
-    resetSearch();
+   
+    document.getElementById('txtBox').style.display = 'none';
     document.getElementById('myForm').style.display = 'block';
     document.getElementById('divpage').style.display = 'none';
 
@@ -109,7 +112,6 @@ function editBook(id, name, author, status, pages) {
 }
 
 function saveBook() {
-    resetSearch();
     let inid = document.getElementById('id').textContent;
     let inname = document.getElementById('inbookname').value;
     let inauthor = document.getElementById('inauthorname').value;
@@ -119,6 +121,7 @@ function saveBook() {
 
     addBook(inid, inname, inauthor, instatus, inpages);
 
+   
     /* document.getElementById("lblbookname").style.display = 'none';
      document.getElementById("lblauthorname").style.display = 'none';
      document.getElementById('id').textContent = '';
@@ -151,6 +154,7 @@ function addBook(id, name, author, status, pages) {
         document.getElementById("lblauthorname").style.display = 'none';
         document.getElementById("lblnopages").style.display = 'none';
         updateBook(id, name, author, status, pages);
+        resetSearch();
     }
     else {
         document.getElementById("lblbookname").style.display = 'none';
@@ -159,6 +163,7 @@ function addBook(id, name, author, status, pages) {
         let inid = arrayBooks[arrayBooks.length - 1].id + 1;
         arrayBooks.push({ id: inid, name: name, status: status, author: author, pages: pages });
         displayBooks();
+        resetSearch();
     }
 
 }
@@ -175,18 +180,5 @@ function updateBook(id, name, author, status, pages) {
         }
     }
     displayBooks();
-}
-
-function closeApp(x) {
-    // Send a message to the parent document to hide the iframe
-    if (x == 0) {
-        document.getElementById('container').style.display = 'block';
-        document.getElementById('libicon').style.display = 'none';
-    }
-    else {
-        document.getElementById('container').style.display = 'none';
-        document.getElementById('libicon').style.display = 'block';
-
-    }
 }
 

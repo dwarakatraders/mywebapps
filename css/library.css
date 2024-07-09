@@ -185,9 +185,13 @@
  #divadd {
      height: 40px;
      text-align: right;
-     width: 16%;
+     width: 150px;
  }
-
+ #divsearch {
+    float: right;
+    padding-left: 245px;
+    width: 370px;
+}
  input[type="button"],
  input[type="submit"] {
      width: 100px;
@@ -240,7 +244,4 @@
      width: 100%;
  }
 
- #divsearch {
-     width: 54%;
-     text-align: right;
- }
+ 
