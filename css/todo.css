@@ -240,7 +240,8 @@ input:checked+.slider:before {
 }
 
 .strike-out {
-    text-decoration: line-through;
+    text-decoration-line: line-through;
+text-decoration-thickness: 0.4rem;
 }
 
 .addtodo_create {
