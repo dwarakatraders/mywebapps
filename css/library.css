@@ -1,247 +1,426 @@
- body {
-    margin: 0px;
-     font-family: Tahoma, sans-serif;
-     justify-content: space-between;
- }
-
- * {
-     box-sizing: border-box;
- }
-
- /* The browser window */
- .libmain {
-     width: 100%;
- }
-
- #container {
-     position: absolute;
-     border-top-left-radius: 7px;
-     border-top-right-radius: 7px;
-     width: 100%;
-     margin: auto;
- }
-
- /* Container for columns and the top "toolbar" */
- #containerheader {
-     width: 100%;
-     padding: 10px;
-     height: 50px;
-     background: rgb(8, 117, 233);
-     border-top-left-radius: 4px;
-     border-top-right-radius: 4px;
-     cursor: move;
- }
-
- /* Create three unequal columns that floats next to each other */
- .part {
-     float: left;
- }
-
- .left {
-     width: 5%;
-     text-align: left;
- }
-
- .welcomeleft {
-     width: 30%;
-     text-align: left;
-     color: #050a0f;
-     font-size: 15px;
-     font-weight: 100;
-     text-align: left;
-     text-shadow: 0 1px 1px rgba(0, 0, 0, 0.1);
-     vertical-align: middle;
-     padding-left: 4px;
- }
-
- .right {
-     width: 5%;
- }
-
- .middle {
-     color: aliceblue;
-     font-size: 20px;
-     padding-left: 20px;
-     width: 90%;
- }
-
- /* Clear floats after the columns */
- .row:after {
-     content: "";
-     display: table;
-     clear: both;
- }
-
- /* Three dots */
- .dot {
-     margin-top: 4px;
-     height: 22px;
-     width: 22px;
-     padding-left: 7px;
-     background-color: #bbb;
-     border-radius: 50%;
-     display: inline-block;
-     background: #ED594A;
- }
-
- /* Style the input field */
- input[type=text] {
-     width: 90%;
-     height: 40px;
-     border: none;
-     border-bottom: 2px solid black;
- }
-
- /* Page content */
- .content {
-     padding: 10px;
- }
-
- .table-fill {
-     border: 1px solid rgb(129, 130, 130);
-     background: white;
-     border-radius: 3px;
-     border-collapse: collapse;
-     margin: auto;
-     width: 100%;
- }
-
- th,
- .footer {
-     color: #050a0f;
-     background: #9db8e6;
-     height: 50px;
-     font-size: 15px;
-     font-weight: 100;
-     text-align: left;
-     text-shadow: 0 1px 1px rgba(0, 0, 0, 0.1);
-     vertical-align: middle;
-
- }
-
- .header {
-     color: #D5DDE5;
-     background: #1b1e24;
-     border-bottom: 1px solid #9ea7af;
-     border-right: 1px solid #343a45;
-     border-top-left-radius: 16px;
-     border-top-right-radius: 16px;
-     height: 45px;
-     font-size: 20px;
-     font-weight: 100;
-     text-align: left;
-     text-shadow: 0 1px 1px rgba(0, 0, 0, 0.1);
-     vertical-align: middle;
- }
-
- .row {
-     border-top: 1px solid #C1C3D1;
-     border-bottom: 1px solid #C1C3D1;
-     height: 40px;
-     color: #666B85;
-     font-size: 15px;
-     font-weight: normal;
-     text-shadow: 0 1px 1px rgba(256, 256, 256, 0.1);
- }
-
- .row:hover {
-     background: #4E5066;
-     color: #FFFFFF;
-     border-top: 1px solid #22262e;
- }
-
- .text-center {
-     text-align: center;
- }
-
- .text-right {
-     text-align: right;
- }
-
- .text-left {
-     text-align: left;
- }
-
- .pad-15 {
-     padding: 15px;
- }
-
- .pad-right-40 {
-     padding-right: 40px;
- }
-
- .pad-left-40 {
-     padding-left: 40px;
- }
-
- .wid-110 {
-     width: 115px;
- }
-
- .delete {
-     cursor: pointer;
- }
-
- #divadd {
-     height: 40px;
-     text-align: right;
-     width: 150px;
- }
- #divsearch {
-    float: right;
-    padding-left: 245px;
-    width: 370px;
+/* Reset some default styles */
+body,
+h1,
+h2,
+p,
+ul {
+    margin: 0;
+    padding: 0;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
 }
- input[type="button"],
- input[type="submit"] {
-     width: 100px;
-     height: 30px;
-     background-color: #9db8e6;
-     border: 0px;
-     cursor: pointer;
- }
 
- input[type="button"]:hover,
- input[type="submit"]:hover {
-     background-color: #4E5066;
-     color: #FFFFFF;
- }
+/* Body style */
+body {
+    background-color: #E8ECEF;
+    /* Light grey background */
+    color: #333;
+    /* Dark text */
+}
 
- label {
-     color: #666B85;
-     font-size: 15px;
-     font-weight: normal;
-     text-shadow: 0 1px 1px rgba(256, 256, 256, 0.1);
- }
+/* Header style */
+header {
+    background: linear-gradient(45deg, #7f534b, #E0E0E0);
+    /* Darker grey background */
+    color: white;
+    padding: 1rem;
+    text-align: center;
+    font-size: 16px;
+}
 
- .red {
-     color: red;
- }
+/* Top navigation menu */
+.top-nav {
+    background-color: #7f534b;
+    /* Dark grey background */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    /* Center items horizontally */
+    padding: 1rem;
+    color: #fff;
+}
 
- input:focus::placeholder {
-     color: transparent;
- }
+.top-nav .menu-toggle {
+    display: none;
+    /* Hide the menu toggle icon by default on desktop */
+}
 
- .bookicon {
-     font-size: 30px;
-     color: #ffffff;
- }
+.top-nav ul.desktop-menu {
+    list-style: none;
+    display: flex;
+    align-items: center;
+}
 
- .closeicon {
-     cursor: pointer;
- }
+.top-nav ul.desktop-menu li {
+    margin: 0 1rem;
+}
 
- #txtBox {
-     display: inline;
-     width: 150px;
-     height: 30px;
-     border: none;
-     border-bottom: 2px solid rgb(117, 114, 114);
- }
+.top-nav ul.desktop-menu a {
+    color: white;
+    text-decoration: none;
+    padding: 0.5rem 1rem;
+    display: block;
+}
 
- .divhead {
-     display: flex;
-     width: 100%;
- }
+.top-nav ul.desktop-menu a:hover {
+    background-color: #d4baa8;
+    /* Medium grey on hover */
+    color: #000;
+}
 
- 
+/* Container style */
+.container {
+    display: flex;
+}
+
+/* Side navigation menu */
+.side-nav {
+    background-color: #7f534b;
+    /* Dark grey background */
+    width: 200px;
+    padding: 1rem;
+    min-height: 100vh;
+    transform: translateX(0);
+    /* Show side nav by default on larger screens */
+    position: fixed;
+    top: 0vh;
+    /* Adjust top position below header */
+    left: 0;
+    z-index: 1000;
+    overflow-y: auto;
+}
+
+.side-nav ul {
+    padding-top: 15vh;
+    list-style: none;
+}
+
+.side-nav li {
+    margin: 1rem 0;
+}
+
+.side-nav a {
+    color: white;
+    text-decoration: none;
+    display: block;
+    padding: 0.5rem 1rem;
+}
+
+.side-nav a:hover {
+    background-color: #d4baa8;
+    /* Medium grey on hover */
+    color: #000;
+}
+
+/* Close button for mobile */
+.close-btn {
+    display: none;
+    /* Hide close button by default */
+}
+
+/* Footer style */
+footer {
+    background: linear-gradient(45deg, #7f534b, #E0E0E0);
+    /* Darker grey background */
+    color: white;
+    text-align: center;
+    padding: 1rem;
+    position: fixed;
+    width: 100%;
+    bottom: 0;
+}
+
+/* The browser window */
+.libmain {
+    width: 100%;
+    padding-left: 250PX;
+}
+
+#container {
+    position: absolute;
+    width: 80%;
+    margin: auto;
+}
+
+
+/* Create three unequal columns that floats next to each other */
+.part {
+    float: left;
+}
+
+.left {
+    width: 5%;
+    text-align: left;
+}
+
+.welcomeleft {
+    width: 30%;
+    text-align: left;
+    color: #050a0f;
+    font-size: 18px;
+    text-align: left;
+    vertical-align: middle;
+    padding-left: 4px;
+}
+
+.right {
+    width: 5%;
+}
+
+.middle {
+    color: aliceblue;
+    font-size: 20px;
+    padding-left: 20px;
+    width: 90%;
+}
+
+/* Clear floats after the columns */
+.row:after {
+    content: "";
+    display: table;
+    clear: both;
+}
+
+/* Style the input field */
+input[type=text] {
+    width: 90%;
+    height: 40px;
+    border: none;
+    border-bottom: 2px solid black;
+}
+
+/* Page content */
+.content {
+    padding: 10px;
+}
+
+.table-fill {
+    border: 1px solid rgb(129, 130, 130);
+    background: white;
+    border-radius: 3px;
+    border-collapse: collapse;
+    margin: auto;
+    width: 100%;
+}
+
+th,
+.footer {
+    color: #fff;
+    background: #7f534b;
+    height: 50px;
+    font-weight: 300;
+    text-align: left;
+    vertical-align: middle;
+
+}
+
+.row {
+    border-top: 1px solid #C1C3D1;
+    border-bottom: 1px solid #C1C3D1;
+    height: 40px;
+    font-weight: normal;
+}
+
+.row:hover {
+    background: #d4baa8;
+    border-top: 1px solid #22262e;
+}
+
+.text-center {
+    text-align: center;
+}
+
+.text-right {
+    text-align: right;
+}
+
+.text-left {
+    text-align: left;
+}
+
+.pad-15 {
+    padding: 15px;
+}
+
+.pad-right-40 {
+    padding-right: 40px;
+}
+
+.pad-left-40 {
+    padding-left: 40px;
+}
+
+.wid-110 {
+    width: 115px;
+}
+
+.delete {
+    cursor: pointer;
+}
+
+#divadd {
+    height: 40px;
+    text-align: right;
+    width: 16%;
+}
+
+input[type="button"],
+input[type="submit"] {
+    width: 100px;
+    height: 30px;
+    background-color: #7f534b;
+    border: 0px;
+    cursor: pointer;
+    color: #FFFFFF;
+}
+
+input[type="button"]:hover,
+input[type="submit"]:hover {
+    background-color: #d4baa8;
+    color: #000;
+}
+
+label {
+    color: #666B85;
+    font-size: 15px;
+    font-weight: normal;
+    text-shadow: 0 1px 1px rgba(256, 256, 256, 0.1);
+}
+
+.red {
+    color: red;
+}
+
+input:focus::placeholder {
+    color: transparent;
+}
+
+.bookicon {
+    font-size: 30px;
+    color: #ffffff;
+}
+
+.closeicon {
+    cursor: pointer;
+}
+
+#txtBox {
+    display: inline;
+    width: 260px;
+    height: 30px;
+    border: none;
+    border-bottom: 2px solid rgb(117, 114, 114);
+}
+
+.divhead {
+    display: flex;
+    width: 100%;
+}
+
+#divsearch {
+    width: 74%;
+    text-align: right;
+}
+
+#divpage {
+    width: 100%;
+}
+
+/* Media Query for Mobile */
+@media (max-width: 768px) {
+    .top-nav 
+    {       
+    justify-content:left;
+    }
+    .top-title
+    {
+        padding-left: 40px;
+        font-size: 20px;
+    }
+    .top-nav .menu-toggle {
+        display: block;
+        /* Show the menu toggle icon on mobile */
+        font-size: 1.5rem;
+        cursor: pointer;
+        color: white;
+        /* Set color of menu toggle icon */
+    }
+
+    .top-nav ul.desktop-menu {
+        display: none;
+        /* Hide the desktop menu links on mobile */
+    }
+
+    .side-nav {
+        transform: translateX(-100%);
+        /* Hide side nav off-screen on mobile */
+    }
+
+    .side-nav.show {
+        transform: translateX(0);
+        /* Show side nav when menu toggle icon is clicked */
+    }
+
+    .side-nav.show .close-btn {
+        display: block;
+        /* Show close button on mobile when side nav is open */
+        position: absolute;
+        top: 1rem;
+        padding-right: 1rem;
+        left: 0px;
+        color: white;
+        font-size: 2rem;
+        cursor: pointer;
+        background: none;
+        border: none;
+    }
+
+    main {
+        padding-left: 0px;
+        margin-left: 15px;
+        /* Adjust main content margin for mobile view */
+    }
+
+    /* The browser window */
+    .libmain {
+        width: 100%;
+        padding-left: 0PX;
+    }
+
+    #container {
+        position: absolute;
+        width: 95%;
+        margin: auto;
+    }
+
+    .divhead {
+        position: relative;
+        flex-direction: column;
+        align-items: flex-start;
+
+        padding-bottom: 11px;
+    }
+
+    .welcomeleft {
+        width: 100%;
+        padding-bottom: 11px;
+    }
+
+    #txtBox {
+        width: 54vh;
+    }
+
+    #divadd {
+        position: absolute;
+        width: 100%;
+        justify-content: space-between;
+    }
+
+    #divpage {
+        width: 100%;
+    }
+
+    #myForm {
+        width: 100%;
+    }
+
+}

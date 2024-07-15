@@ -1,78 +1,74 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 
 <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Calculator</title>
-    <link href='https://fonts.googleapis.com/css?family=Noto Sans' rel='stylesheet'>
-    <link href="css/calc.css" rel="stylesheet">
+    <link rel="stylesheet" href="css/calc.css">
 </head>
 
 <body>
-    <div id="divMain">      
-
-        <div id="divCalcBox">
-            <table>
-                <tr>
-                    <td colspan="4"> </td>
-                </tr>
-                <tr>
-                    <td colspan="4">
-                        <!--<input id="idExpression" type="text" readonly name="answerBox">-->
-                        <input type="text" name="answerBox" id="idFirst" hidden="true" value="0">
-                        <input type="text" name="answerBox" id="idOperator" hidden="true" value="0">
-                        <input id="idAnswerBox" type="text" readonly name="answerBox" value="0">
-                    </td>
-                </tr>
-                <tr>
-                    <td><input type="button" value="C" class="commoninput" onclick="clearInput()"></td>
-                    <td><input type="button" value="+/-" class="commoninput" onclick="display('+/-')"
-                            onkeydown="display('+/-')"></td>
-                    <td><input type="button" value="/" class="commoninput" onclick="display('/')"
-                            onkeydown="display('/')"></td>
-                    <td><input type="button" value="X" class="commoninput" onclick="display('*')"
-                            onkeydown="display('*')"></td>
-                </tr>
-                <tr>
-                    <td><input type="button" value="7" class="commoninput" onclick="display('7')"
-                            onkeydown="display('7')"></td>
-                    <td><input type="button" value="8" class="commoninput" onclick="display('8')"
-                            onkeydown="display('8')"></td>
-                    <td><input type="button" value="9" class="commoninput" onclick="display('9')"
-                            onkeydown="display('9')"></td>
-                    <td><input type="button" value="-" class="commoninput" onclick="display('-')"
-                            onkeydown="display('-')"></td>
-                </tr>
-                <tr>
-                    <td><input type="button" value="4" class="commoninput" onclick="display('4')"
-                            onkeydown="display('4')"></td>
-                    <td><input type="button" value="5" class="commoninput" onclick="display('5')"
-                            onkeydown="display('5')"></td>
-                    <td><input type="button" value="6" class="commoninput" onclick="display('6')"
-                            onkeydown="display('6')"></td>
-                    <td><input type="button" value="+" class="commoninput" onclick="display('+')"
-                            onkeydown="display('+')"></td>
-                </tr>
-                <tr>
-                    <td><input type="button" value="1" class="commoninput" onclick="display('1')"
-                            onkeydown="display('1')"></td>
-                    <td><input type="button" value="2" class="commoninput" onclick="display('2')"
-                            onkeydown="display('2')"></td>
-                    <td><input type="button" value="3" class="commoninput" onclick="display('3')"
-                            onkeydown="display('3')"></td>
-                    <td rowspan="2"><input type="button" value="=" class="equal" onclick="display('=')"></td>
-                </tr>
-                <tr>
-                    <td colspan="2"><input type="button" value="0"  class="zero" onclick="display('0')"
-                            onkeydown="display('0')"></td>
-                    <td><input type="button" value="." class="commoninput" onclick="display('.')"
-                            onkeydown="display('.')"></td>
-                </tr>
-            </table>
-        </div>
-
-
+    <header>
+        <h1>My Work</h1>
+    </header>
+    <nav class="top-nav">
+        <div class="menu-toggle" onclick="toggleMenu()">&#9776;</div> <!-- Menu toggle icon -->
+       <div class="top-title"> Calculator   </div>       
+    </nav>
+    <div class="container">
+        <!-- Left side navigation menu -->
+        <aside class="side-nav" id="sideNav">
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="todo.html">To-Do List</a></li>
+                <li><a href="calc.html">Calculator</a></li>
+                <li><a href="library.html">Library</a></li>
+                <!--<li><a href="#">Shopping Cart</a></li> -->
+            </ul>
+            <button class="close-btn" onclick="toggleMenu()">&times;</button> <!-- Close button for mobile -->
+        </aside>
+        <main>
+            <div class="calculator">
+                <div class="display">
+                    <input type="text" name="answerBox" id="idFirst" hidden="true" value="0">
+                    <input type="text" name="answerBox" id="idOperator" hidden="true" value="0">
+                    <span class="result" id="idAnswerBox">0</span>
+                </div>
+                <div class="buttons">
+                    <button class="button function" onclick="clearInput()">AC</button>
+                    <button class="button function" onclick="display('+/-')" onkeydown="display('+/-')">±</button>
+                    <button class="button function" onclick="display('%')" onkeydown="display('%')">%</button>
+                    <button class="button operator" onclick="display('/')" onkeydown="display('/')">÷</button>
+                    <button class="button number" onclick="display('7')" onkeydown="display('7')">7</button>
+                    <button class="button number" onclick="display('8')" onkeydown="display('8')">8</button>
+                    <button class="button number" onclick="display('9')" onkeydown="display('9')">9</button>
+                    <button class="button operator" onclick="display('*')" onkeydown="display('*')">×</button>
+                    <button class="button number" onclick="display('4')" onkeydown="display('4')">4</button>
+                    <button class="button number" onclick="display('5')" onkeydown="display('5')">5</button>
+                    <button class="button number" onclick="display('6')" onkeydown="display('6')">6</button>
+                    <button class="button operator" onclick="display('-')" onkeydown="display('-')">−</button>
+                    <button class="button number" onclick="display('1')" onkeydown="display('1')">1</button>
+                    <button class="button number" onclick="display('2')" onkeydown="display('2')">2</button>
+                    <button class="button number" onclick="display('3')" onkeydown="display('3')">3</button>
+                    <button class="button operator" onclick="display('+')" onkeydown="display('+')">+</button>
+                    <button class="button number zero" onclick="display('0')" onkeydown="display('0')">0</button>
+                    <button class="button number" onclick="display('.')" onkeydown="display('.')">.</button>
+                    <button class="button operator" onclick="display('=')">=</button>
+                </div>
+            </div>
+        </main>
     </div>
+    <footer>
+        <p>&copy; 2024 My Website. All rights reserved.</p>
+    </footer>
     <script src="js/calc.js"></script>
+    <script>
+        function toggleMenu() {
+            var sideNav = document.getElementById("sideNav");
+            sideNav.classList.toggle("show");
+        }
+    </script>
 </body>
 
 </html>

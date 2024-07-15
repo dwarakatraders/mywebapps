@@ -1,105 +1,59 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Umaya's App List</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-    <link rel="stylesheet" href="css/style.css">
-
+    <title>My Work - Home</title>
+    <link rel="stylesheet" href="css/styles.css">
 </head>
-
-<body onload="hideFrame()">
-    <div>
-        <div class="divdesktop"><img src="img/library.jpg" id="libicon" alt="library" class="desktopicon"
-                onclick="closeOpenApp(0)">
-        </div>
-        <div class="divdesktext">
-            <a href="javascript:closeOpenApp(0)" class="desktoptitle">Library</a>
-        </div>
-        <div class="divdesktop"><img src="img/checklist.png" id="todoicon" alt="To-Do List" class="desktopicon"
-                onclick="closeOpenApp(2)">
-        </div>
-        <div class="divdesktext">
-            <a href="javascript:closeOpenApp(2)" class="desktoptitle">To-Do</a>
-        </div>
-        <div class="divdesktop"><img src="img/calc.jpg" id="calcicon" alt="Calculator" class="desktopicon"
-                onclick="closeOpenApp(4)">
-        </div>
-        <div class="divdesktext">
-            <a href="javascript:closeOpenApp(4)" class="desktoptitle">Calculator</a>
-        </div>
+<body>
+    <header>
+        <h1>My Work</h1>
+    </header>
+    <nav class="top-nav">
+        <div class="menu-toggle" onclick="toggleMenu()">&#9776;</div> <!-- Menu toggle icon -->    
+        <div class="top-title">Home - Details About Web App's</div>
+    </nav>
+    <div class="container">
+        <!-- Left side navigation menu -->
+        <aside class="side-nav" id="sideNav">
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="todo.html">To-Do List</a></li>
+                <li><a href="calc.html">Calculator</a></li>
+                <li><a href="library.html">Library</a></li>
+                <!--<li><a href="#">Shopping Cart</a></li> -->
+            </ul>
+            <button class="close-btn" onclick="toggleMenu()">&times;</button> <!-- Close button for mobile -->
+        </aside>
+        <main>
+            <section id="todo" class="app-section">
+                <h2>To-Do Management System</h2>
+                <p>Organize your tasks efficiently with our comprehensive to-do management system. Add, update, and track your tasks with ease.</p>
+                <a href="todo.html" class="btn">Go to To-Do Management</a>
+            </section>
+            <section id="library" class="app-section">
+                <h2>Library Management System</h2>
+                <p>Manage your library resources effectively. Add, view, Edit, Delete Books and manage check-out and check-in status of Books with our user-friendly library management system.</p>
+                <a href="library.html" class="btn">Go to Library Management</a>
+            </section>
+            <section id="calculator" class="app-section">
+                <h2>Calculator App</h2>
+                <p>Perform quick calculations with our intuitive calculator app. Designed with simplicity and ease of use in mind.</p>
+                <a href="calc.html" class="btn">Go to Calculator App</a>
+            </section>
+            <section><br><br><br></section>
+        </main>
     </div>
-    <div class="main">
-
-        <div id="libcontainer">
-            <div id="libcontainerheader">
-                <div class="part left">
-                    <i class="fa fa-book bookicon"></i>
-                </div>
-                <div class="part middle">
-                    Library Management System
-                </div>
-
-                <div class="part right closeicon" onclick="closeOpenApp(1);">
-                    <span class="dot">x</span>
-                </div>
-            </div>
-            <div class="libbody">
-                <iframe id="idlibraryframe" src="library.html"></iframe>
-            </div>
-        </div>
-
-        <div id="todocontainer">
-            <div id="todocontainerheader">
-                <div class="part left">
-                    <i class="fa fa-pencil-square-o bookicon"></i>
-                </div>
-                <div class="part middle">
-                    To-Do List
-                </div>
-
-                <div class="part right closeicon" onclick="closeOpenApp(3);">
-                    <span class="dot">x</span>
-                </div>
-            </div>
-            <div class="todobody">
-                <iframe id="idtodoframe" src="todolist.html"></iframe>
-            </div>
-        </div>
-
-        <div id="calccontainer">
-            <div id="calccontainerheader">
-                <div class="part leftcalc">
-                    <i class="fa fa-calculator bookicon"></i>
-                </div>
-                <div class="part middlecalc">
-                    Calculator
-                </div>
-
-                <div class="part rightcalc closeicon" onclick="closeOpenApp(5);">
-                    <span class="dot">x</span>
-                </div>
-            </div>
-            <div>
-                <iframe id="idcalcframe" src="calc.html"></iframe>
-            </div>
-        </div>
-    </div>
-
-    <div id="footer">
-        <input type="button" id="btnmyApps" value="My Apps">
-        <div class="dropup-menu" id="dropupMenu"><br>
-            <label id="lblName">Umaya's App
-                List</label>
-            <br><br>
-            <a href="javascript:closeOpenApp(0);">Library Management</a>
-            <a href="javascript:closeOpenApp(2);">To-Do List</a>
-            <a href="javascript:closeOpenApp(4);">Calculator</a>
-        </div>
-    </div>
+    <footer>
+        <p>&copy; 2024 My Website. All rights reserved.</p>
+    </footer>
+    
+    <script>
+        function toggleMenu() {
+            var sideNav = document.getElementById("sideNav");
+            sideNav.classList.toggle("show");
+        }
+    </script>
 </body>
-<script src="js/script.js"></script>
-
 </html>

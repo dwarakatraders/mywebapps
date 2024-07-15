@@ -1,213 +1,198 @@
 (async function () {
     const data = await fetch("todos.json");
     const res = await data.json();
-    const todoListdiv = document.getElementById("divtodolist");
-    const openbutton = document.getElementById("btnopen");
-    const allbutton = document.getElementById("btnall");
-    const compbutton = document.getElementById("btncomp");
-    const addbutton = document.getElementById("btnadd");
-    const txttodo = document.getElementById("txtTodo");        
-    const ddassignto = document.getElementById("ddassignto");
-    const tasktooltip = document.getElementById('taskTooltip');
-    const addTodoForm = document.getElementById("addform");
-    const chkslide = document.getElementById("chkSlide");
-    let typeSelected = 'All';
+    const todoListdiv = document.getElementById("tasklist");
+    const addbutton = document.getElementById("btnAdd");
+    const txttodo = document.getElementById("taskInput");
+    const ddassignto = document.getElementById("assignToSelect");
+    const addTodoForm = document.getElementById("taskForm");
+    const filterForm = document.getElementById("filterForm");
+    const statusFilter = document.getElementById("statusFilter");
+    const assignFilter = document.getElementById("assignFilter");
+    const sortBy = document.getElementById("sortBy");
+    const prevButton = document.getElementById("prevButton");
+    const nextButton = document.getElementById("nextButton");
     let todos = res;
     const itemsPerPage = 3;
     let currentPage = 1;
 
-    //alert(chkslide.checked);
-    chkslide.addEventListener("click", (e) => {
-        if (chkslide.checked) {
-            document.getElementById('swithText').textContent = 'Swith to List View:';
-        }
-        else {
-            document.getElementById('swithText').textContent = 'Swith to Details View:';
-        }
-        renderTodos(typeSelected, currentPage);;
+
+
+    txttodo.addEventListener("input", () => {
+        addbutton.disabled = txttodo.value.trim() === '';
     });
 
     addbutton.addEventListener("click", (e) => {
+        e.preventDefault();
+        let newId = todos.Todos.length > 0 ? Math.max(...todos.Todos.map(todo => todo.id)) + 1 : 1;
+        const formData = new FormData(addTodoForm);
+        const task = formData.get('task');
+        const assignto = formData.get('assignto');
+        if (task) {
+            let toDoData = {
+                task: task,
+                id: newId,
+                status: "Open",
+                assignto: assignto,
+                createdon: formatDate(new Date()),
+                completedon: ""
+            };
 
-        if (!txttodo.checkValidity()) {
-            txttodo.classList.add('invalid');
-            tasktooltip.classList.add('show');
-            e.preventDefault(); // Prevent form submission
-        } else {
-            txttodo.classList.remove('invalid');
-            tasktooltip.classList.remove('show');
-
-            let newId = todos.Todos.length > 0 ? Math.max(...todos.Todos.map(todo => todo.id)) + 1 : 1;
-            const formData = new FormData(addTodoForm);
-            //const values = [...formData.entries()];
-            const task = formData.get('task');
-            const assignto = formData.get('assignto');
-            if (task) {
-                let toDoData = {
-                    task: task,
-                    id: newId,
-                    status: "Open",                        
-                    assignto: assignto,
-                    createdon: formatDate(new Date()),
-                    completedon: ""
-                };
-                todos.Todos.push(toDoData);
-                addTodoForm.reset();
-
-                currentPage = 1;
-                renderTodos(typeSelected, currentPage);
-            }
+            todos.Todos.push(toDoData);
+            addTodoForm.reset();
+            addbutton.disabled = true;
+            currentPage = 1;
+            renderTodos();
         }
+    });
 
+    filterForm.addEventListener("change", () => {
+        currentPage = 1; // Reset currentPage when filter changes
+        renderTodos();
     });
 
     // Event listener for the delete action using event delegation
-    todoListdiv.addEventListener("click", function (event) {
+    todoListdiv.addEventListener("click", function (event) {console.log(event.target.classList);
         if (event.target.classList.contains('delete')) {
             const id = parseInt(event.target.getAttribute('data-id'));
             deleteToDo(id);
-        }
-    });
-
-    // Event listener for the update action using event delegation
-    todoListdiv.addEventListener("click", function (event) {
-        if (event.target.type === 'checkbox') {
+        } else if (event.target.classList.contains('complete-task-link')) {
             const id = parseInt(event.target.getAttribute('data-id'));
-            updateToDo(id, event.target);
+            updateToDo(id, true); // Pass true to mark as completed
+        } else if (event.target.classList.contains('reopen-task-link')) { 
+            const id = parseInt(event.target.getAttribute('data-id'));
+            updateToDo(id, false); // Pass false to reopen task
+        } else if (event.target.classList.contains('toggle-details-btn') || event.target.classList.contains('fa')) {
+            const taskItem = event.target.closest('.task-item');
+            const id = parseInt(taskItem.getAttribute('data-task-id'));
+            toggleDetails(id, taskItem);
         }
     });
+    function toggleDetails(id, taskItem) {
+        let todo = todos.Todos.find(todo => todo.id == id);
+        if (todo) { 
+            todo.open = !todo.open;
+            renderTodos();
+        }
+    }
 
-    function renderTodos(type, page) {
+
+    function renderTodos() {
+        const status = statusFilter.value;
+        const assignto = assignFilter.value;
+        const sortField = sortBy.value;
+
         todoListdiv.innerHTML = "";
-        let count = 0;
-        let filltertodo = '';
-        todos.Todos.sort((a, b) => parseDate(b.createdon) - parseDate(a.createdon));
-        typeSelected = type;
-        if (type == 'All') {
+        let filteredTodos = ''
 
-            filltertodo = todos.Todos;
+        if (status === 'All' && assignto === "All") {
+            filteredTodos = todos.Todos;
+        } else if (status === 'All') {
+            filteredTodos = todos.Todos.filter(todo => todo.assignto === assignto);
+        } else if (assignto === "All") {
+            filteredTodos = todos.Todos.filter(todo => todo.status === status);
         }
         else {
-            filltertodo = todos.Todos.filter(element => element.status == type);
+            filteredTodos = todos.Todos.filter(todo => todo.status === status && todo.assignto === assignto);
         }
-        const startIndex = (page - 1) * itemsPerPage;
-        const endIndex = page * itemsPerPage;
-        const paginatedTodos = filltertodo.slice(startIndex, endIndex);
 
-        var todolist = '<table class="table-todo">'
+
+        if (sortField === "task") {
+            filteredTodos.sort((a, b) => a.task.localeCompare(b.task));
+        } else if (sortField === "createdon") {
+            filteredTodos.sort((a, b) => parseDate(b.createdon) - parseDate(a.createdon));
+        }
+
+        const startIndex = (currentPage - 1) * itemsPerPage;
+        const endIndex = currentPage * itemsPerPage;
+        const paginatedTodos = filteredTodos.slice(startIndex, endIndex);
+
+        var todolist = '<div class="list-view">'
         if (paginatedTodos.length > 0) {
-            todolist += '<tr><td colspan="2"></td></tr>'
+            todolist += '<h2>Task List</h2>'
             paginatedTodos.forEach((todo) => {
-                count++;
-                if (chkslide.checked) {
-                    todolist += '<tr><td class="pad-left-30' + (todo.status == "Completed" ? ' strike-out' : '') + ' ">' + todo.task + '</td><td class="pad-left-5"><i class="fa fa-trash-o delete" data-id="' + todo.id + '"></i></td></tr><tr><td class="pad-left-30" colspan="2">Status: ' + todo.status + '</td></tr><tr><td class="pad-left-30" colspan="2">Assign to: ' + todo.assignto + '</td></tr><tr><td class="pad-left-30">Created On: ' + todo.createdon + '</td><td class="pad-right-15"><input  type="checkbox"' + (todo.status == "Completed" ? ' checked' : '') + ' data-id="' + todo.id + '" ></td></tr>'+(todo.status == "Completed"?('<tr><td colspan="2" class="pad-left-30"> Completed On: '+todo.completedon + '</td></tr>'):'');
-                }
-                else {
-                    todolist += '<tr><td class="pad-left-30' + (todo.status == "Completed" ? ' strike-out' : '') + ' ">' + todo.task + '</td><td class="pad-left-5"><i class="fa fa-trash-o delete" data-id="' + todo.id + '"></i></td></tr><tr><td colspan="2" class="pad-left-30">' + todo.status + '</td></tr>';
-                }
-                //console.log(todolist);
-                if (count != paginatedTodos.length) {
-                    todolist += '<tr><td colspan="2"><hr></td></tr>'
-                }
-                else {
-                    todolist += '<tr><td colspan="2" class="pad-zero"></td></tr>'
-                }
+                todolist += `<li class="task-item ${todo.open ? 'open' : ''}" data-task-id="${todo.id}">
+                <div class="task-header">
+                <h3><p><strong class="${todo.status === 'Completed' ? 'strikeout' : ''}">${todo.task}</strong></p><p class="nobold">${todo.status}</p></h3>
+                
+                    <button title="${todo.open ? 'Hide Task Detail' : 'View Task Detail'}" class="toggle-details-btn">${todo.open ? '<i class="fa fa-angle-double-down" style="font-size:24px"></i>' : '<i class="fa fa-angle-double-right" style="font-size:24px"></i>'}</button>
+                </div>
+                <div class="task-details">
+                <div class="task-content">
+                <div class="task-data">
+                    <p><strong>Task:</strong> ${todo.task}</p>
+                    <p><strong>Assignee:</strong> ${todo.assignto}</p>
+                    <p><strong>Status:</strong> ${todo.status}</p>
+                    <p><strong>Created on:</strong> ${todo.createdon}</p>
+                    ${todo.status == "Completed" ? `<p><strong>Completed on:</strong> ${todo.completedon}</p>` : ''}
+                    </div>
+                    <div class="task-actions">
+                    ${todo.status !== "Completed" ? `<b  class="complete-task-link" data-id="${todo.id}">Mark as Completed</b>` : `<b class="reopen-task-link" data-id="${todo.id}">Re-Open the Task</b>`}<br><br>
+                        <i class="fa fa-trash-o delete" title="Delete" data-id="${todo.id}"></i>
+                    </div>
+                </div>
+                </div>               
+            </li>`;
             });
         }
         else {
-            todolist += '<tr><td >Nothing is on your to-do list. Nice work!</td></tr>';
+            todolist += 'Nothing is on your to-do list. Nice work!';
         }
+        todolist += '</div>';
         todoListdiv.innerHTML = todolist;
-        document.getElementById('pageInfo').textContent = `Page ${currentPage} of ${Math.ceil(filltertodo.length / itemsPerPage)}`;
+        updatePaginationButtons(filteredTodos.length);
     };
 
-    allbutton.addEventListener("click", () => {
-        openbutton.className = openbutton.className.replace(" active", "");
-        compbutton.className = compbutton.className.replace(" active", "");
-        allbutton.className = allbutton.className.includes(" active") ? allbutton.className : allbutton.className + " active";
-        typeSelected = 'All';
-        currentPage=1;
-        renderTodos('All', currentPage);
-    });
-    openbutton.addEventListener("click", () => {
-        allbutton.className = allbutton.className.replace(" active", "");
-        compbutton.className = compbutton.className.replace(" active", "");
-        openbutton.className = openbutton.className.includes(" active") ? openbutton.className : openbutton.className + " active";
-        typeSelected = 'Open';
-        currentPage=1;
-        renderTodos('Open', currentPage);
-    });
-    compbutton.addEventListener("click", () => {
-        allbutton.className = allbutton.className.replace(" active", "");
-        openbutton.className = openbutton.className.replace(" active", "");
-        compbutton.className = compbutton.className.includes(" active") ? compbutton.className : compbutton.className + " active";
-        typeSelected = 'Completed';
-        currentPage=1;
-        renderTodos('Completed', currentPage);
-    });
 
+
+    function updatePaginationButtons(totalItems) {
+        const totalPages = Math.ceil(totalItems / itemsPerPage);
+        const pageInfo = document.getElementById("pageInfo");
+
+        prevButton.disabled = currentPage === 1;
+        nextButton.disabled = currentPage === totalPages;
+
+        pageInfo.innerHTML = `Page <span class="current-page">${currentPage}</span> of <span class="total-pages">${totalPages}</span>`;
+
+    }
+    document.getElementById('nextButton').addEventListener('click', showNextPage);
+    document.getElementById('prevButton').addEventListener('click', showPrevPage);
     function showNextPage() {
-        let fillteredlist=typeSelected=='All'? todos.Todos : todos.Todos.filter(element => element.status == typeSelected);
-        if (currentPage < Math.ceil(fillteredlist.length / itemsPerPage)) {
-            currentPage++;
-            renderTodos(typeSelected, currentPage);
-        }
+        currentPage++;
+        renderTodos();
     }
 
     function showPrevPage() {
-        if (currentPage > 1) {
-            currentPage--;
-            renderTodos(typeSelected, currentPage);
-        }
+        currentPage--;
+        renderTodos();
     }
 
-    document.getElementById('nextButton').addEventListener('click', showNextPage);
-    document.getElementById('prevButton').addEventListener('click', showPrevPage);
-
-    // allbutton.className="buttonAll allbutton active";
-    renderTodos('All', currentPage);
-
+    renderTodos();
 
     function deleteToDo(id) {
         var result = confirm("Are you sure you want to delete this task?");
         if (result) {
-            // Find the index of the todo item to delete
-            var indexToDelete = todos.Todos.findIndex(todo => todo.id === id);
-            if (indexToDelete !== -1) {
-                // Delete the item
-                todos.Todos.splice(indexToDelete, 1);
-
-                // Calculate the number of items on the current page
-                const itemsOnCurrentPage = todos.Todos.slice((currentPage - 1) * itemsPerPage, currentPage * itemsPerPage).length;
-
-                // If the current page is empty after deletion, move to the previous page
-                if (itemsOnCurrentPage === 0 && currentPage > 1) {
-                    currentPage--;
-                }
-                renderTodos(typeSelected, currentPage);
+            const index = todos.Todos.findIndex(todo => todo.id === id);
+            if (index !== -1) {
+                todos.Todos.splice(index, 1);
+                renderTodos();
             }
         }
     }
 
-    function updateToDo(id, ele) {
-        var result = "";
-        if (!ele.checked) {
-            result = confirm("Are you sure? you want to reopen this Task ?");
-        }
-        else {
-            result = confirm("Are you sure? Do you completed this Task ?");
-        }
-        if (result) {
-            let i = todos.Todos.length;
-            while (i--) {
-                if (todos.Todos[i]['id'] == id) {
-                    todos.Todos[i].status = (todos.Todos[i].status == "Completed" ? "Open" : "Completed");
-                    todos.Todos[i].completedon = (todos.Todos[i].status == "Completed" ? formatDate(new Date()) : "");
-                    break;
-                }
+    function updateToDo(id, markAsCompleted) {
+        const todo = todos.Todos.find(todo => todo.id === id);
+        if (todo) {
+            const action = markAsCompleted ? "complete" : "reopen";
+            const confirmMessage = markAsCompleted ? "Are you sure? Do you want to complete this Task?" : "Are you sure? Do you want to reopen this Task?";
+            const result = confirm(confirmMessage);
+
+            if (result) {
+                todo.status = markAsCompleted ? "Completed" : "Open";
+                todo.completedon = markAsCompleted ? formatDate(new Date()) : "";
+                renderTodos();
             }
         }
-        renderTodos(typeSelected, currentPage);
     }
 
     function formatDate(date) {
@@ -259,4 +244,3 @@
     }
 
 })();
-

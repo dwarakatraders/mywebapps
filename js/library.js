@@ -18,7 +18,6 @@ addbutton.addEventListener('click', () => {
     document.getElementById('rdcheckin').checked = true;
     document.getElementById('rdcheckout').checked = false;
     document.getElementById('txtBox').value = '';
-    document.getElementById('txtBox').style.display = 'none';
 });
 document.getElementById('divsearch').append(searchbox);
 document.getElementById('divadd').append(addbutton);
@@ -55,8 +54,7 @@ function findBooks() {
     bindBooks(arrfind);
 }
 function resetSearch() {
-    document.getElementById('txtBox').value = '';    
-    document.getElementById('txtBox').style.display = 'block';
+    document.getElementById('txtBox').value = '';
     document.getElementById('txtBox').dispatchEvent(new Event('keyup'));
 }
 function displayBooks() {
@@ -69,13 +67,13 @@ function displayBooks() {
 function bindBooks(arrBook) {
     var booklist = '<table class="table-fill">'
     if (arrBook.length > 0) {
-        booklist += '<tr><th></th><th>Book Name</th><th>Author</th><th>No. of Pages</th><th>Status</th><th>Remove</th><th>Edit</th></tr>'
+        booklist += '<tr><th></th><th>Book Name</th><th>Author</th><th>Status</th><th>Remove</th><th>Edit</th></tr>'
         arrBook.forEach((items) => {
-            booklist += '<tr class="row"><td>&nbsp;</td><td>' + items.name + '</td><td class="text-left">' + items.author + '</td><td class="text-center">' + items.pages + '</td><td class="text-left">' + items.status + '</td><td class="text-center"><i class="fa fa-trash-o delete" onClick="deleteBook(' + items.id + ')"></i></td><td class="text-center"><i class="fa fa-edit delete" onClick="editBook(' + items.id + ',\'' + items.name.replaceAll("'", "\\'") + '\',\'' + items.author.replaceAll("'", "\\'") + '\',\'' + items.status + '\',\'' + items.pages + '\');"></i></td></tr>';
+            booklist += '<tr class="row"><td>&nbsp;</td><td>' + items.name + '</td><td class="text-left">' + items.author + '</td><td class="text-left">' + items.status + '</td><td class="text-center"><i class="fa fa-trash-o delete" onClick="deleteBook(' + items.id + ')"></i></td><td class="text-center"><i class="fa fa-edit delete" onClick="editBook(' + items.id + ',\'' + items.name.replaceAll("'", "\\'") + '\',\'' + items.author.replaceAll("'", "\\'") + '\',\'' + items.status + '\',\'' + items.pages + '\');"></i></td></tr>';
         });
     }
     else {
-        booklist += '<tr><td colspan="6">No Books Found!!</td></tr>';
+        booklist += '<tr><td colspan="5">No Books Found!!</td></tr>';
     }
     booklist += '</table>';
     document.getElementById("divpage").innerHTML = booklist;
@@ -98,8 +96,7 @@ function deleteBook(id) {
 }
 
 function editBook(id, name, author, status, pages) {
-   
-    document.getElementById('txtBox').style.display = 'none';
+    resetSearch();
     document.getElementById('myForm').style.display = 'block';
     document.getElementById('divpage').style.display = 'none';
 
@@ -112,6 +109,7 @@ function editBook(id, name, author, status, pages) {
 }
 
 function saveBook() {
+    resetSearch();
     let inid = document.getElementById('id').textContent;
     let inname = document.getElementById('inbookname').value;
     let inauthor = document.getElementById('inauthorname').value;
@@ -121,7 +119,6 @@ function saveBook() {
 
     addBook(inid, inname, inauthor, instatus, inpages);
 
-   
     /* document.getElementById("lblbookname").style.display = 'none';
      document.getElementById("lblauthorname").style.display = 'none';
      document.getElementById('id').textContent = '';
@@ -154,7 +151,6 @@ function addBook(id, name, author, status, pages) {
         document.getElementById("lblauthorname").style.display = 'none';
         document.getElementById("lblnopages").style.display = 'none';
         updateBook(id, name, author, status, pages);
-        resetSearch();
     }
     else {
         document.getElementById("lblbookname").style.display = 'none';
@@ -163,7 +159,6 @@ function addBook(id, name, author, status, pages) {
         let inid = arrayBooks[arrayBooks.length - 1].id + 1;
         arrayBooks.push({ id: inid, name: name, status: status, author: author, pages: pages });
         displayBooks();
-        resetSearch();
     }
 
 }
@@ -180,5 +175,18 @@ function updateBook(id, name, author, status, pages) {
         }
     }
     displayBooks();
+}
+
+function closeApp(x) {
+    // Send a message to the parent document to hide the iframe
+    if (x == 0) {
+        document.getElementById('container').style.display = 'block';
+        document.getElementById('libicon').style.display = 'none';
+    }
+    else {
+        document.getElementById('container').style.display = 'none';
+        document.getElementById('libicon').style.display = 'block';
+
+    }
 }
 

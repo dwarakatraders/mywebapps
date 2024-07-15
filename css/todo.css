@@ -1,352 +1,581 @@
+/* Reset some default styles */
+body,
+h1,
+p,
+ul {
+    margin: 0;
+    padding: 0;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+}
+
+h2 {
+    font-size: 20px;
+}
+
+h3 {
+    font-size: 20px;
+}
+
+/* Body style */
 body {
-    font-family: Tahoma, sans-serif;
-    margin: 0px;
+    background-color: #F0F4F8;
+    color: #333;
 }
 
-#divtodomain {
-    padding-top: 15px;
-    padding-left: 28px;
-    min-height: 450px;
-}
-
-input[type='text'],
-select {
-    display: block;
-    width: 450px;
-    height: 40px;
-    padding: 8px 8px;
-    line-height: 25px;
-    font-size: 17px;
-    font-weight: 500;
-    font-family: inherit;
-    border-radius: 9px;
-    color: var(--input-color);
-    border: 1px solid #3e3e3e;
-    background: #fff;
-    transition: border .3s ease;
-
-
-    &:focus {
-        outline: none;
-        border-color: rgb(8, 117, 233);
-    }
-}
-
-/* Placeholder style */
-input[type='text']::placeholder {
-    color: #707070;
-}
-
-/* Focus style */
-
-select:focus {
-    border-color: rgb(8, 117, 233);
-}
-
-#divadd {
-    width: 100%;
-    display: flex;
-}
-
-#btnadd {
-    font-size: 18px;
-    width: 70px;
-    background-color: #0875e9;
-    border-radius: 17px;
+/* Header style */
+header {
+    background: linear-gradient(45deg, #006ee2, #E0E0E0);
     color: white;
-    border: 0px;
-    cursor: pointer;
-    height: 55px;
-}
-
-#divtodolist {
-    width: 93%;
-    border: 2px solid rgb(165, 164, 164);
-    border-radius: 17px;
-    background: radial-gradient(circle, rgba(255, 255, 255, 1) 0%, rgba(255, 255, 255, 1) 55%, #e2e2e2 100%);
-}
-
-#divfilter {
-    padding-top: 20px;
-    height: 50px;
-    width: 100%;
-}
-
-#divbutton {
-    float: left;
-    width: 61%
-}
-
-#divswitch {
-    float: right;
-    width: 39%
-}
-
-#swithText {
-    font-size: 14px;
-}
-.divswitchtext
-{
-    text-align: right;
-    padding-right: 3px;
-    padding-top: 3px;
-    float: left;
-    width: 55%
-}
-.divslider
-{
-    float: right;
-    width: 40%
-}
-
-
-.table-todo {
-    border-radius: 3px;
-    border-collapse: collapse;
-    margin: 0px;
-    width: 100%;
-    max-width: 600px;
-}
-
-tr {
-    height: 18px;
-    color: #666B85;
-    font-size: 15px;
-    font-weight: normal;
-    text-shadow: 0 1px 1px rgba(256, 256, 256, 0.1);
-}
-
-.pad-left-30 {
-    padding-left: 30px;
-    text-wrap:wrap;
-    max-width: 600px;
-}
-
-.pad-left-5 {
-    padding-left: 5px;
-}
-
-.pad-right-15 {
-    padding-right: 2px;
-
-}
-
-.buttonAll {
-    align-items: center;
-    background-color: #686869;
-    background-image: linear-gradient(1deg, #686869, #e2e2e2 99%);
-    background-size: calc(100% + 20px) calc(100% + 20px);
-    border-width: 0;
-    box-sizing: border-box;
-    color: #FFFFFF;
-    cursor: pointer;
-    display: inline-flex;
-    font-family: CircularStd, sans-serif;
-    font-size: 1rem;
-    height: auto;
-    justify-content: center;
-    line-height: 1.5;
-    padding: 6px 20px;
-    position: relative;
+    padding: 1rem;
     text-align: center;
-    transition: background-color .2s, background-position .2s;
-    touch-action: manipulation;
-    vertical-align: top;
+    font-size: 16px;
 }
 
-.active {
-    background-color: #3EB2FD;
-    background-image: linear-gradient(1deg, #4F58FD, rgb(8, 117, 233) 99%);
-    outline: none;
-}
-
-.buttonAll:hover {
-    background-position: -20px -20px;
-}
-
-.allbutton {
-    border-top-left-radius: 100px;
-    border-bottom-left-radius: 100px;
-}
-
-.openbutton {
-    border-radius: 0px;
-}
-
-.compbutton {
-
-    border-top-right-radius: 100px;
-    border-bottom-right-radius: 100px;
-}
-
-.switch {
-    position: relative;
-    display: inline-block;
-    width: 60px;
-    height: 34px;
-}
-
-.switch input {
-    opacity: 0;
-    width: 0;
-    height: 0;
-}
-
-.slider {
-    position: absolute;
-    cursor: pointer;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background-color: #ccc;
-    -webkit-transition: .4s;
-    transition: .4s;
-}
-
-.slider:before {
-    position: absolute;
-    content: "";
-    height: 26px;
-    width: 26px;
-    left: 4px;
-    bottom: 4px;
-    background-color: white;
-    -webkit-transition: .4s;
-    transition: .4s;
-}
-
-input:checked+.slider {
-    background-color: #0875e9;
-}
-
-input:focus+.slider {
-    box-shadow: 0 0 1px #0875e9;
-}
-
-input:checked+.slider:before {
-    -webkit-transform: translateX(26px);
-    -ms-transform: translateX(26px);
-    transform: translateX(26px);
-}
-
-/* Rounded sliders */
-.slider.round {
-    border-radius: 34px;
-}
-
-.slider.round:before {
-    border-radius: 50%;
-}
-
-.strike-out {
-    text-decoration-line: line-through;
-text-decoration-thickness: 3px;
-}
-
-.addtodo_create {
-    width: 88%;
-    padding: 15px;
-    text-align: center;
+/* Top navigation menu */
+.top-nav {
+    background-color: #005BBB;
     display: flex;
-    flex-direction: row;
-    gap: 10px;
-    line-height: 15px;
-    vertical-align: middle;
-
-    border: 2px solid rgb(165, 164, 164);
-    border-radius: 17px;
-    background: radial-gradient(circle, rgba(255, 255, 255, 1) 0%, rgba(255, 255, 255, 1) 55%, #e2e2e2 100%);
-}
-
-.pad-zero {
-    padding: 0px;
-    line-height: 0px;
-    margin: 0px;
-}
-
-.divinput {
-    float: left;
-    width: 77%
-}
-
-.divsubmit {
-    padding-left: 27px;
-    padding-TOP: 26px;
-    float: right;
-    width: 25%
-}
-
-.assignto {
-    float: left;
-    width: 469px;
-}
-
-/* Tooltip container */
-.tooltip {
-    display: none;
-    position: absolute;
-    background-color: #333;
+    align-items: center;
+    justify-content: center;
+    /* Center items horizontally */
+    padding: 1rem;
     color: #fff;
-    padding: 5px 10px;
-    border-radius: 5px;
-    font-size: 14px;
-    white-space: nowrap;
 }
 
-/* Show tooltip */
-.tooltip.show {
+.top-nav .menu-toggle {
+    display: none;
+    /* Hide the menu toggle icon by default on desktop */
+}
+
+.top-nav ul.desktop-menu {
+    list-style: none;
+    display: flex;
+    align-items: center;
+}
+
+.top-nav ul.desktop-menu li {
+    margin: 0 1rem;
+}
+
+.top-nav ul.desktop-menu a {
+    color: white;
+    text-decoration: none;
+    padding: 0.5rem 1rem;
     display: block;
 }
 
-#prevButton {
-    vertical-align: middle;
-    font-size: 16px;
-    border: 1px solid #333;
-    border-radius: 30px;
-    width: 150px;
-    height: 30px;
+.top-nav ul.desktop-menu a:hover {
+    background-color: #004AAD;
 }
 
-#nextButton {
-    width: 150px;
-    height: 30px;
-    font-size: 15px;
-    border: 1px solid #333;
-    border-radius: 30px;
-    vertical-align: middle;
+/* Container style */
+.container {
+    display: flex;
 }
 
-#divpaging {
+/* Side navigation menu */
+.side-nav {
+    background-color: #004AAD;
+    width: 200px;
+    padding: 1rem;
+    min-height: 100vh;
+    transform: translateX(0);
+    /* Show side nav by default on larger screens */
+    position: fixed;
+    top: 0vh;
+    /* Adjust top position below header */
+    left: 0;
+    z-index: 1000;
+    overflow-y: auto;
+}
+
+.side-nav ul {
+
+    padding-top: 15vh;
+    list-style: none;
+}
+
+.side-nav li {
+    margin: 1rem 0;
+}
+
+.side-nav a {
+    color: white;
+    text-decoration: none;
+    display: block;
+    padding: 0.5rem 1rem;
+}
+
+.side-nav a:hover {
+    background-color: #003A8D;
+}
+
+/* Close button for mobile */
+.close-btn {
+    display: none;
+    /* Hide close button by default */
+}
+
+/* Main content style */
+main {
+    flex: 1;
+    padding: 2rem;
+    margin-left: 200px;
+    /* Ensure main content starts after side nav */
+}
+
+/* Footer style */
+footer {
+    background: linear-gradient(45deg, #006ee2, #E0E0E0);
+    color: white;
+    text-align: center;
+    padding: 1rem;
+    position: fixed;
+    width: 100%;
+    bottom: 0;
+}
+
+/* Main content style */
+main {
+    flex: 1;
+    padding-left: 5rem;
+    margin-left: 200px;
+    /* Ensure main content starts after side nav */
+}
+
+.todo-list,
+.add-task,
+.filter-options {
+    background-color: #fff;
+    /* White background for main sections */
+    margin-bottom: 1rem;
+    padding: 1rem;
+    border-radius: 10px;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+    width: 80%;
+}
+
+.todo-list h2,
+.add-task h2 {
+    color: #333;
+    /* Dark grey header text */
+    margin-bottom: 1rem;
+}
+
+.todo-list ul {
+    padding: 0;
+    list-style: none;
+}
+
+.todo-list li {
+    background-color: #f0f4f8;
+    /* Light grey task item background */
+    padding: 0.5rem 1rem;
+    margin-bottom: 0.5rem;
+    border-radius: 5px;
+    box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.add-task form {
+    display: flex;
+    align-items: center;
+}
+
+.add-task input[type="text"],
+.add-task select {
+    flex: 1;
+    padding: 0.5rem;
+    font-size: 1rem;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    margin-right: 0.5rem;
+    color: #333;
+    /* Dark grey text */
+}
+
+.add-task select,
+.filter-options select {
+    appearance: none;
+    /* Remove default appearance */
+    -webkit-appearance: none;
+    /* Remove default appearance for older versions of Chrome/Safari */
+    -moz-appearance: none;
+    /* Remove default appearance for older versions of Firefox */
+    background-color: #fff;
+    /* White background */
+    padding: 0.5rem;
+    /* Padding */
+    border: 1px solid #ccc;
+    /* Border */
+    border-radius: 5px;
+    /* Border radius */
+    font-size: 1rem;
+    /* Font size */
+    color: #333;
+    /* Text color */
+    cursor: pointer;
+    /* Cursor style */
+    width: 100%;
+    /* Full width */
+    background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 12 12"><path d="M6 8l4-5H2z" fill="%23555555"/></svg>');
+    /* Custom arrow SVG */
+    background-repeat: no-repeat;
+    background-position: calc(100% - 10px) center;
+    /* Position arrow on the right side */
+   
+    overflow:scroll;
+}
+
+/* Custom styles for select dropdown options */
+.add-task select option {
+    max-height: 10px;
+    overflow-y:scroll;
+}
+
+.add-task select option:hover {
+    background-color: #f0f4f8;
+    /* Light grey background on hover */
+}
+.add-task button {
+    padding: 0.5rem 1rem;
+    background-color: #007aff;
+    /* Blue button background */
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.add-task button:hover {
+    background-color: #0056b3;
+    /* Darker shade of blue on hover */
+}
+
+button {
+    background: #007BFF;
+    color: white;
+    cursor: pointer;
+    transition: background 0.3s;
+}
+
+button:disabled {
+    background: #555;
+    cursor: not-allowed;
+}
+
+button:disabled:hover {
+    background: #555;
+    cursor: not-allowed;
+}
+
+.tasklist {
+    display: flex;
+    justify-content: space-between;
+}
+
+.list-view {
+    width: 94%;
+    /* Adjust width as needed */
+    border: 0px solid #ccc;
+    border-radius: 5px;
+}
+
+.tasks-list {
+    list-style-type: none;
+    padding: 0;
+}
+
+.task-item {
+    margin-bottom: 1rem;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    list-style-type: none
+}
+
+.task-header {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    width: 94%;
-    margin-top: 1px;
-
+    padding: 0.5rem;
 }
 
-#divleftpaging,
-#divmiddlepaging,
-#divrightpaging {
-    flex: 1;
+.task-header h3 {
+    margin: 0;
+    font-size: 15px;
+    ;
+}
+
+.nobold {
+    font-weight: 400;
+}
+
+.task-details {
+    display: none;
+    padding: 0.5rem;
+    border-top: 1px solid #ddd;
+}
+.task-content {
     display: flex;
-    justify-content: center;
+    justify-content: space-between;
+    align-items: flex-start;
+}
+
+.task-data {
+    float: left; /* Float left for task data */
+    width: 70%; /* Adjust width as needed */
+}
+
+.task-actions {
+    float: right; /* Float right for task actions */
+    text-align: right; /* Align text to the right within the div */
+    width: 30%; /* Adjust width as needed */
+}
+
+.task-actions input[type="checkbox"] {
+    height: 19px;
+    width: 19px;
+    margin-right:10px; /* Space between checkbox and trash icon */
+}
+
+.task-actions .delete {
+    cursor: pointer;
+    color: red;
+   font-size: 25px;
+    padding-right: 10px;
+}
+
+.task-actions .complete-task-link {
+    color: #0552a4; /* Example color */
+    text-decoration: none;    
+    cursor: pointer;
+    font-size: 12px;
+}
+.task-actions .complete-task-link:hover {
+    color: green; /* Example color */
+    text-decoration: none;
+}
+
+.task-actions .reopen-task-link {
+    color: #0552a4; /* Example color */
+    text-decoration: none;    
+    cursor: pointer;
+    font-size: 12px;
+}
+.task-actions .reopen-task-link:hover {
+    color: red; /* Example color */
+    text-decoration: none;
+}
+
+
+.task-details p {
+    margin: 0.5rem 0;
+}
+
+.toggle-details-btn {
+    background-color: #007bff;
+    color: white;
+    border: none;
+    padding: 0.5rem 1rem;
+    cursor: pointer;
+    border-radius: 5px;
+}
+
+.toggle-details-btn:hover {
+    background-color: #0056b3;
+}
+
+/* Show task details on button click */
+.task-item.open .task-details {
+    display: block;
+}
+
+.pagination {
+    width: 94%;
+    margin-top: 0.5rem;
+    padding-left: 0px;
+    display: flex;
+    justify-content: space-between;
     align-items: center;
 }
 
-#divleftpaging {
-    justify-content: flex-start;
+.prevButton,
+.nextButton {
+    padding: 0.5rem 1rem;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
 }
 
-#divrightpaging {
-    justify-content: flex-end;
+.prevButton:hover,
+.nextButton:hover {
+    background-color: #0056b3;
 }
 
-#pageInfo {
-    font-size: 16px;
+.pageInfo {
+    font-size: 0.9rem;
 }
-.pagenavi
-{
-    font-size:18px; color: #333;
+
+
+.strikeout {
+    text-decoration-line: line-through;
+    text-decoration-thickness: 2px;
+}
+
+.filter-options {
+    background-color: #f2f2f2;
+    padding: 14px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    display: flex;
+    align-items: center;
+    /* Align items vertically in the center */
+    gap: 20px;
+    /* Adjust as needed for spacing between items */
+}
+
+.filter-options h2 {
+    width: 15%;
+    font-size: 1.0rem;
+    margin: 0;
+    /* Remove margin to prevent extra space */
+}
+
+.filter-options form {
+    width: 85%;
+    display: flex;
+    align-items: center;
+    /* Align items vertically in the center */
+    gap: 10px;
+    /* Adjust as needed for spacing between form elements */
+}
+
+.filter-options select {
+    width: 100%;
+}
+
+.filter-options select:focus {
+    outline: none;
+    border-color: #007bff;
+    /* Example focus color */
+    box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
+    /* Example focus shadow */
+}
+
+/* Media Query for Mobile */
+@media (max-width: 768px) {
+    .top-nav 
+    {       
+    justify-content:left;
+    }
+    .top-title
+    {
+        padding-left: 40px;
+        font-size: 20px;
+    }
+    .top-nav .menu-toggle {
+        display: block;
+        /* Show the menu toggle icon on mobile */
+        font-size: 1.5rem;
+        cursor: pointer;
+        color: white;
+        /* Set color of menu toggle icon */
+    }
+
+    .top-nav ul.desktop-menu {
+        display: none;
+        /* Hide the desktop menu links on mobile */
+    }
+
+    .side-nav {
+        transform: translateX(-100%);
+        /* Hide side nav off-screen on mobile */
+    }
+
+    .side-nav.show {
+        transform: translateX(0);
+        /* Show side nav when menu toggle icon is clicked */
+    }
+
+    .side-nav.show .close-btn {
+        display: block;
+        /* Show close button on mobile when side nav is open */
+        position: absolute;
+        top: 1rem;
+        padding-right: 1rem;
+        left: 0px;
+        color: white;
+        font-size: 2rem;
+        cursor: pointer;
+        background: none;
+        border: none;
+    }
+
+    main {
+        padding-left: 0px;
+        margin-left: 30px;
+        /* Adjust main content margin for mobile view */
+    }
+
+    .add-task form {
+        padding: 1rem;
+        /* Add more padding to form for better spacing */
+    }
+
+    .add-task input[type="text"],
+    .add-task select {
+        margin-bottom: 1rem;
+        /* Increase margin bottom for inputs */
+    }
+
+    .add-task form {
+        display: block;
+        /* Change display to block for inputs to stack */
+    }
+
+    .add-task input[type="text"] {
+        width: calc(100% - 2rem);
+    }
+
+    .add-task select {
+        width: calc(100% - 1rem);
+        /* Make inputs and select full width minus padding and border */
+    }
+
+    .filter-options h2 {
+        width: 100%;
+        font-size: 1.0rem;
+        margin: 0;
+    }
+
+    .filter-options {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .filter-options form {
+        flex-direction: column;
+        width: 100%;
+    }
+
+    .filter-options select {
+        width: 100%;
+        margin-bottom: 10px;
+        /* Adjust spacing as needed */
+    }
+
+
+    .todo-list,
+    .add-task,
+    .filter-options {
+
+        width: 94%;
+    }
+
+    .pagination {
+        width: 94%;
+        padding-left: 2px;
+    }
 }

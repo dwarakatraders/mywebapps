@@ -101,84 +101,11 @@ header {
     display: none; /* Hide close button by default */
 }
 
-.calculator {
-    display: grid;
-    grid-template-rows: 1fr 4fr;
-    width: 350px;
-    height: 520px;
-    background-color: #4A4A4A; /* Darker grey */
-    border-radius: 20px;
-    box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.5);
-}
-
-.display {
-    display: flex;
-    justify-content: flex-end;
-    align-items: center;
-    padding: 20px;
-    background-color: #2D2D2D; /* Dark grey */
-    border-top-left-radius: 20px;
-    border-top-right-radius: 20px;
-    color: white;
-    font-size: 2.5rem; /* Default font size */
-    overflow: hidden; /* Hide overflow to prevent layout issues */
-    white-space: nowrap; 
-}
-.result.long {
-    font-size: 2rem; /* Reduced font size for lengthy content */
-}
-.buttons {
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    grid-template-rows: repeat(5, 1fr);
-}
-
-.button {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    font-size: 1.5rem;
-    border: 1px solid #4A4A4A; /* Darker grey border */
-    border-radius: 10px;
-    margin: 5px;
-    color: white;
-    transition: background-color 0.3s ease; /* Smooth transition for hover effect */
-}
-
-.button.function {
-    background-color: #a5a5a5;
-    color: black;
-}
-
-.button.operator {
-    background-color: #f09a36;
-}
-
-.button.number {
-    background-color: #575757; /* Medium grey */
-}
-
-.button.zero {
-    grid-column: span 2;
-}
-
-/* Hover effect for buttons */
-.button:hover {
-    background-color: #6e6e6e; /* Slightly lighter grey on hover */
-}
-
-.button.function:hover {
-    background-color: #c1c1c1; /* Lighter grey for function buttons on hover */
-}
-
-.button.operator:hover {
-    background-color: #f2b064; /* Lighter orange for operator buttons on hover */
-}
 
 /* Main content style */
 main {
     flex: 1;
-    padding-left: 5rem;
+    padding-left: 1rem;
     padding-top: 0.5rem;
     margin-left: 200px; /* Ensure main content starts after side nav */
 }
@@ -192,6 +119,39 @@ footer {
     position: fixed;
     width: 100%;
     bottom: 0;
+    
+}
+.app-section {
+    
+    width: 82%;
+    padding: 20px 20px;
+    text-align: center;
+}
+
+.app-section h2 {
+    font-size: 2em;
+    margin-bottom: 20px;
+    color: #333;
+}
+
+.app-section p {
+    font-size: 1.1em;
+    margin-bottom: 20px;
+    color: #666;
+}
+
+.app-section .btn {
+    background-color: #2D2D2D;
+    color: white;
+    padding: 10px 20px;
+    text-decoration: none;
+    border-radius: 5px;
+    font-size: 1em;
+}
+
+.app-section .btn:hover {
+    background-color: #f09a36;
+    color: #000;
 }
 
 /* Media Query for Mobile */
