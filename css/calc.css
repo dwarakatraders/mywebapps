@@ -91,7 +91,7 @@ header {
     padding: 0.5rem 1rem;
 }
 
-.side-nav a:hover,.activelink {
+.side-nav a:hover,.side-nav a.active {
     background-color: #f09a36; /* Medium grey on hover */
     color: #000;
 }
