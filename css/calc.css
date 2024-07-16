@@ -239,8 +239,8 @@ footer {
 
     main {
         padding-left: 0px;
-        margin-left: 15px; /* Adjust main content margin for mobile view */
-        margin-bottom: 20px;
+        margin-left: 5px; /* Adjust main content margin for mobile view */
+        margin-bottom: 100px;
     }
 
     .display {
