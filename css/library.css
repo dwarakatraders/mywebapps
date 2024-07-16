@@ -157,15 +157,6 @@ footer {
     text-align: left;
 }
 
-.welcomeleft {
-    width: 30%;
-    text-align: left;
-    color: #050a0f;
-    font-size: 18px;
-    text-align: left;
-    vertical-align: middle;
-    padding-left: 4px;
-}
 
 .right {
     width: 5%;
@@ -217,7 +208,12 @@ th,
     vertical-align: middle;
 
 }
-
+td{
+    
+    word-wrap: break-word;
+    word-break: break-all;
+    max-width: 160px;
+}
 .row {
     border-top: 1px solid #C1C3D1;
     border-bottom: 1px solid #C1C3D1;
@@ -265,11 +261,26 @@ th,
 .delete {
     cursor: pointer;
 }
+#divwelcome {
+    height: 40px;
+    text-align: right;
+    width: 11%;
+}
+
+#divsearch {
+    width: 80%;
+    text-align: right;
+}
 
 #divadd {
     height: 40px;
     text-align: right;
-    width: 16%;
+    width: 9%;
+}
+
+.divhead {
+    display: flex;
+    width: 100%;
 }
 
 input[type="button"],
@@ -318,16 +329,6 @@ input:focus::placeholder {
     height: 30px;
     border: none;
     border-bottom: 2px solid rgb(117, 114, 114);
-}
-
-.divhead {
-    display: flex;
-    width: 100%;
-}
-
-#divsearch {
-    width: 74%;
-    text-align: right;
 }
 
 #divpage {
@@ -461,7 +462,7 @@ input:focus::placeholder {
     }
 
     #txtBox {
-        width: 54vh;
+        width: 45vh;
     }
 
     #divadd {

@@ -18,6 +18,9 @@ addbutton.addEventListener('click', () => {
     document.getElementById('rdcheckin').checked = true;
     document.getElementById('rdcheckout').checked = false;
     document.getElementById('txtBox').value = '';
+    
+    document.getElementById("divsearch").style.display = 'none';
+    document.getElementById("divadd").style.display = 'none';
 });
 document.getElementById('divsearch').append(searchbox);
 document.getElementById('divadd').append(addbutton);
@@ -77,6 +80,8 @@ function bindBooks(arrBook) {
     }
     booklist += '</table>';
     document.getElementById("divpage").innerHTML = booklist;
+    document.getElementById("divsearch").style.display = 'block';
+    document.getElementById("divadd").style.display = 'block';
 }
 
 function deleteBook(id) {
@@ -99,6 +104,9 @@ function editBook(id, name, author, status, pages) {
     resetSearch();
     document.getElementById('myForm').style.display = 'block';
     document.getElementById('divpage').style.display = 'none';
+    
+    document.getElementById("divsearch").style.display = 'none';
+    document.getElementById("divadd").style.display = 'none';
 
     document.getElementById('id').textContent = id;
     document.getElementById('inbookname').value = name;
@@ -129,6 +137,8 @@ function saveBook() {
 }
 
 function addBook(id, name, author, status, pages) {
+    document.getElementById("divsearch").style.display = 'none';
+    document.getElementById("divadd").style.display = 'none';
     if (name == '') {
         document.getElementById("lblbookname").style.display = 'block';
     }
@@ -160,6 +170,7 @@ function addBook(id, name, author, status, pages) {
         arrayBooks.push({ id: inid, name: name, status: status, author: author, pages: pages });
         displayBooks();
     }
+   
 
 }
 
