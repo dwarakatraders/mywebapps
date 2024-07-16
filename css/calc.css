@@ -91,12 +91,11 @@ header {
     padding: 0.5rem 1rem;
 }
 
-.side-nav a:hover {
+.side-nav a:hover,.activelink {
     background-color: #f09a36; /* Medium grey on hover */
     color: #000;
 }
 
-/* Close button for mobile */
 .close-btn {
     display: none; /* Hide close button by default */
 }
@@ -178,7 +177,7 @@ header {
 /* Main content style */
 main {
     flex: 1;
-    padding-left: 5rem;
+    padding-left: 25rem;
     padding-top: 0.5rem;
     margin-left: 200px; /* Ensure main content starts after side nav */
 }

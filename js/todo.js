@@ -196,6 +196,25 @@
         event.preventDefault();
         dropdownContent.style.display = dropdownContent.style.display === 'block' ? 'none' : 'block';
     });
+
+    // Modal JavaScript
+    var modal = document.getElementById("infoModal");
+    var infoIcon = document.querySelector(".info-icon");
+    var span = document.getElementsByClassName("close")[0];
+
+    infoIcon.onclick = function() {
+        modal.style.display = "block";
+    }
+
+    span.onclick = function() {
+        modal.style.display = "none";
+    }
+
+    window.onclick = function(event) {
+        if (event.target == modal) {
+            modal.style.display = "none";
+        }
+    }
     renderTodos();
 
     function deleteToDo(id) {

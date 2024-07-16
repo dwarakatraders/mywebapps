@@ -25,12 +25,44 @@
                 <li><a href="index.html">Home</a></li>
                 <li><a href="todo.html">To-Do List</a></li>
                 <li><a href="calc.html">Calculator</a></li>
-                <li><a href="library.html">Library</a></li>
-                 <!--<li><a href="#">Shopping Cart</a></li> -->
+                <li><a href="library.html" class="activelink">Library</a></li>
+                <!--<li><a href="#">Shopping Cart</a></li> -->
             </ul>
             <button class="close-btn" onclick="toggleMenu()">&times;</button> <!-- Close button for mobile -->
         </aside>
         <main>
+            <i class="fa fa-info-circle info-icon" aria-hidden="true" title="Info about To-Do App"></i>
+
+            <!-- The Modal -->
+            <div id="infoModal" class="modal">
+                <div class="modal-content">
+                    <span class="close">&times;</span>
+                    <h2>Library Management System</h2>
+                    <hr>
+                    <p>The Library Management System is a comprehensive web application designed to manage and
+                        streamline library operations. It allows users to manage books efficiently. The system is built
+                        to provide a user-friendly interface, making it easy for
+                        librarians to interact with the library's resources.</p>
+                    Features
+                    <h2>Add Book:</h2>
+                    <p>Librarians can add new books to the library catalog by entering details such as title, author,
+                        No of Pages and Status</p>
+                    <h2>View Books: </h2>
+                    <p>The system provides a searchable and sortable list of all books in the library.</p>
+                    <h2>Edit Book:</h2>
+                    <p>Existing book details can be updated..</p>
+                    <h2>Delete Book:</h2>
+                    <p>Books can be removed from the library catalog</p>
+                    <h2>Search Functionality:</h2>
+                    <p>
+                        Users can search for books using Book Name.</p>
+                    <h2>Responsive Design:</h2>
+                    <p>
+                        The interface adjusts for different screen sizes, ensuring usability on both desktop and mobile
+                        devices.
+                    </p>                   
+                </div>
+            </div>
             <div class="libmain">
                 <div id="container">
                     <div class="content">

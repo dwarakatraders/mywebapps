@@ -69,7 +69,7 @@ function bindBooks(arrBook) {
     if (arrBook.length > 0) {
         booklist += '<tr><th></th><th>Book Name</th><th>Author</th><th>Status</th><th>Remove</th><th>Edit</th></tr>'
         arrBook.forEach((items) => {
-            booklist += '<tr class="row"><td>&nbsp;</td><td>' + items.name + '</td><td class="text-left">' + items.author + '</td><td class="text-left">' + items.status + '</td><td class="text-center"><i class="fa fa-trash-o delete" onClick="deleteBook(' + items.id + ')"></i></td><td class="text-center"><i class="fa fa-edit delete" onClick="editBook(' + items.id + ',\'' + items.name.replaceAll("'", "\\'") + '\',\'' + items.author.replaceAll("'", "\\'") + '\',\'' + items.status + '\',\'' + items.pages + '\');"></i></td></tr>';
+            booklist += '<tr class="row"><td>&nbsp;</td><td>' + items.name + '</td><td class="text-left">' + items.author + '</td><td class="text-left">' + items.status + '</td><td class="text-left pad-left-10"><i class="fa fa-trash-o delete" onClick="deleteBook(' + items.id + ')"></i></td><td class="text-left pad-left-10"><i class="fa fa-edit delete" onClick="editBook(' + items.id + ',\'' + items.name.replaceAll("'", "\\'") + '\',\'' + items.author.replaceAll("'", "\\'") + '\',\'' + items.status + '\',\'' + items.pages + '\');"></i></td></tr>';
         });
     }
     else {
@@ -176,7 +176,24 @@ function updateBook(id, name, author, status, pages) {
     }
     displayBooks();
 }
+// Modal JavaScript
+var modal = document.getElementById("infoModal");
+var infoIcon = document.querySelector(".info-icon");
+var span = document.getElementsByClassName("close")[0];
 
+infoIcon.onclick = function() {
+    modal.style.display = "block";
+}
+
+span.onclick = function() {
+    modal.style.display = "none";
+}
+
+window.onclick = function(event) {
+    if (event.target == modal) {
+        modal.style.display = "none";
+    }
+}
 function closeApp(x) {
     // Send a message to the parent document to hide the iframe
     if (x == 0) {
