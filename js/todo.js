@@ -26,8 +26,9 @@
         e.preventDefault();
         let newId = todos.Todos.length > 0 ? Math.max(...todos.Todos.map(todo => todo.id)) + 1 : 1;
         const formData = new FormData(addTodoForm);
+        console.log(formData);
         const task = formData.get('task');
-        const assignto = formData.get('assignto');
+        const assignto = document.getElementById('dropdownBtn').innerText==='Assign to'?'Unassigned': document.getElementById('dropdownBtn').innerText;
         if (task) {
             let toDoData = {
                 task: task,
@@ -40,6 +41,7 @@
 
             todos.Todos.push(toDoData);
             addTodoForm.reset();
+            dropdownBtn.innerText = 'Assign to';
             addbutton.disabled = true;
             currentPage = 1;
             renderTodos();
@@ -166,7 +168,34 @@
         currentPage--;
         renderTodos();
     }
+    window.onclick = function(event) {
+        if (!event.target.matches('.dropbtn')) {
+          var dropdowns = document.getElementsByClassName("dropdown-content");
+          for (var i = 0; i < dropdowns.length; i++) {
+            var openDropdown = dropdowns[i];
+            if (openDropdown.style.display === 'block') {
+              openDropdown.style.display = 'none';
+            }
+          }
+        }
+      }
 
+      var dropdownContent = document.getElementById('dropdownContent');
+    var dropdownBtn = document.getElementById('dropdownBtn');
+
+    dropdownContent.addEventListener('click', function(event) {
+        if (event.target.tagName === 'A') {
+            event.preventDefault();
+            var selectedOption = event.target.innerText;
+            dropdownBtn.innerText = selectedOption;
+            dropdownContent.style.display = 'none';
+        }
+        
+    });
+    dropdownBtn.addEventListener('click', function(event) {
+        event.preventDefault();
+        dropdownContent.style.display = dropdownContent.style.display === 'block' ? 'none' : 'block';
+    });
     renderTodos();
 
     function deleteToDo(id) {

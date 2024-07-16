@@ -35,17 +35,24 @@
                 <h2>Add Task</h2>
                 <form id="taskForm">
                     <input type="text" id="taskInput" name="task" placeholder="Enter task...">
-
-                    <select id="assignToSelect"  name="assignto">
+                    <div class="dropdown">
+                        <button class="dropbtn" id="dropdownBtn" name="assignto">Assign to</button>
+                        <div class="dropdown-content" id="dropdownContent">
+                            <a href="#">Unassigned</a>
+                            <a href="#">Mounika</a>
+                            <a href="#">Nisha</a>
+                            <a href="#">Sindhu</a>
+                            <a href="#">Umaya</a>
+                        </div>
+                    </div>
+                    <!--<select id="assignToSelect"  name="assignto">
                         <option value="Unassigned">Unassigned</option>
                         <option value="Mounika">Mounika</option>
                         <option value="Nisha">Nisha</option>
                         <option value="Saranya">Saranya</option>
                         <option value="Sindhu">Sindhu</option>
                         <option value="Umaya">Umaya</option>
-                    </select>
-
-
+                    </select>-->
                     <button type="submit" id="btnAdd" disabled>Add</button>
                 </form>
             </section>
@@ -65,7 +72,6 @@
                         <option value="Saranya">Saranya</option>
                         <option value="Sindhu">Sindhu</option>
                         <option value="Umaya">Umaya</option>
-                        <!-- Add more users as needed -->
                     </select>
                     <select id="sortBy" name="sortby">
                         <option value="createdon">Sort by Created Date</option>
