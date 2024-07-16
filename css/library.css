@@ -376,7 +376,8 @@ input:focus::placeholder {
 
     main {
         padding-left: 0px;
-        margin-left: 15px;
+        margin-left: 15px;        
+        margin-bottom: 20px;
         /* Adjust main content margin for mobile view */
     }
 
