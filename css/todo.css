@@ -557,7 +557,7 @@ button:disabled:hover {
     margin: auto;
     padding: 20px;
     border: 1px solid #888;
-    width: 80%;
+    width: 40%;
     max-height: 600px;
     overflow-y: auto;
 }
@@ -709,7 +709,9 @@ button:disabled:hover {
     .modal {
         padding-left: 0px;
     }
-
+    .modal-content {
+        width: 80%;
+    }
     .info-icon {
         top: 160px;
     }
