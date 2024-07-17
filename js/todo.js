@@ -28,7 +28,7 @@
         const formData = new FormData(addTodoForm);
         console.log(formData);
         const task = formData.get('task');
-        const assignto = document.getElementById('dropdownBtn').innerText==='Assign to'?'Unassigned': document.getElementById('dropdownBtn').innerText;
+        const assignto = document.getElementById('dropdownBtn').innerText === 'Assign to' ? 'Unassigned' : document.getElementById('dropdownBtn').innerText;
         if (task) {
             let toDoData = {
                 task: task,
@@ -54,17 +54,24 @@
     });
 
     // Event listener for the delete action using event delegation
-    todoListdiv.addEventListener("click", function (event) {console.log(event.target.classList);
+    todoListdiv.addEventListener("click", function (event) {
         if (event.target.classList.contains('delete')) {
             const id = parseInt(event.target.getAttribute('data-id'));
             deleteToDo(id);
         } else if (event.target.classList.contains('complete-task-link')) {
             const id = parseInt(event.target.getAttribute('data-id'));
             updateToDo(id, true); // Pass true to mark as completed
-        } else if (event.target.classList.contains('reopen-task-link')) { 
+        } else if (event.target.classList.contains('reopen-task-link')) {
             const id = parseInt(event.target.getAttribute('data-id'));
             updateToDo(id, false); // Pass false to reopen task
-        } else if (event.target.classList.contains('toggle-details-btn') || event.target.classList.contains('fa')) {
+        } else if (event.target.classList.contains('change-assignee-link')) {
+            const id = parseInt(event.target.getAttribute('data-id'));
+            const assigneeDropdown = document.querySelector(`.assignee-dropdown[data-id="${id}"]`);
+            const assigneeName = document.getElementById("passignee");
+            assigneeDropdown.style.display = 'block';
+            assigneeName.style.display='none';
+        }
+        else if (event.target.classList.contains('toggle-details-btn') || event.target.classList.contains('fa')) {
             const taskItem = event.target.closest('.task-item');
             const id = parseInt(taskItem.getAttribute('data-task-id'));
             toggleDetails(id, taskItem);
@@ -72,12 +79,26 @@
     });
     function toggleDetails(id, taskItem) {
         let todo = todos.Todos.find(todo => todo.id == id);
-        if (todo) { 
+        if (todo) {
             todo.open = !todo.open;
             renderTodos();
         }
     }
+    todoListdiv.addEventListener("change", function (event) {
+        if (event.target.classList.contains('change-assignee')) {
+            const id = parseInt(event.target.getAttribute('data-id'));
+            const newAssignee = event.target.value;
+            changeAssignee(id, newAssignee);
+        }
+    });
 
+    function changeAssignee(id, newAssignee) {
+        const todo = todos.Todos.find(todo => todo.id === id);
+        if (todo && todo.status === 'Open') {
+            todo.assignto = newAssignee;
+            renderTodos();
+        }
+    }
 
     function renderTodos() {
         const status = statusFilter.value;
@@ -115,30 +136,42 @@
             paginatedTodos.forEach((todo) => {
                 todolist += `<li class="task-item ${todo.open ? 'open' : ''}" data-task-id="${todo.id}">
                 <div class="task-header">
-                <h3><p><strong class="${todo.status === 'Completed' ? 'strikeout' : ''}">${todo.task}</strong></p><p class="nobold">${todo.status}</p></h3>
-                
+                    <h3><p><strong class="${todo.status === 'Completed' ? 'strikeout' : ''}">${todo.task}</strong></p><p class="nobold">${todo.status}</p></h3>
                     <button title="${todo.open ? 'Hide Task Detail' : 'View Task Detail'}" class="toggle-details-btn">${todo.open ? '<i class="fa fa-angle-double-down" style="font-size:24px"></i>' : '<i class="fa fa-angle-double-right" style="font-size:24px"></i>'}</button>
                 </div>
                 <div class="task-details">
-                <div class="task-content">
-                <div class="task-data">
-                    <p><strong>Task:</strong> ${todo.task}</p>
-                    <p><strong>Assignee:</strong> ${todo.assignto}</p>
-                    <p><strong>Status:</strong> ${todo.status}</p>
-                    <p><strong>Created on:</strong> ${todo.createdon}</p>
-                    ${todo.status == "Completed" ? `<p><strong>Completed on:</strong> ${todo.completedon}</p>` : ''}
-                    </div>
-                    <div class="task-actions">
-                    ${todo.status !== "Completed" ? `<b  class="complete-task-link" data-id="${todo.id}">Mark as Completed</b>` : `<b class="reopen-task-link" data-id="${todo.id}">Re-Open the Task</b>`}<br><br>
+                    <div class="task-content">
+                        <div class="task-data">
+                            <p><strong>Task:</strong> ${todo.task}</p>
+                            <div style="display: inline; float:column">
+                                <p id="passignee"><strong>Assignee:</strong> ${todo.assignto}</p>
+                                <div class="assignee-dropdown" data-id="${todo.id}" style="display: none;"><strong>Assignee:</strong>
+                                <select class="change-assignee" data-id="${todo.id}">
+                                <option value="Unassigned" ${todo.assignto === 'Unassigned' ? 'selected' : ''}>Unassigned</option>
+                                <option value="Mounika" ${todo.assignto === 'Mounika' ? 'selected' : ''}>Mounika</option>
+                                <option value="Nisha" ${todo.assignto === 'Nisha' ? 'selected' : ''}>Nisha</option>
+                                <option value="Saranya" ${todo.assignto === 'Saranya' ? 'selected' : ''}>Saranya</option>
+                                <option value="Sindhu" ${todo.assignto === 'Sindhu' ? 'selected' : ''}>Sindhu</option>
+                                <option value="Umaya" ${todo.assignto === 'Umaya' ? 'selected' : ''}>Umaya</option>
+                                </select>
+                                </div>
+                            </div>
+                            <p><strong>Status:</strong> ${todo.status}</p>
+                            <p><strong>Created on:</strong> ${todo.createdon}</p>
+                            ${todo.status == "Completed" ? `<p><strong>Completed on:</strong> ${todo.completedon}</p>` : ''}
+                        </div>
+                        <div class="task-actions">
+                        ${todo.status !== "Completed" ? `<b class="complete-task-link" data-id="${todo.id}">Mark as Completed</b>` : `<b class="reopen-task-link" data-id="${todo.id}">Re-Open the Task</b>`}<br><br>
+                        ${todo.status !== "Completed" ? `<b class="change-assignee-link" data-id="${todo.id}">Change Assignee</b><br><br>` : ``}
                         <i class="fa fa-trash-o delete" title="Delete" data-id="${todo.id}"></i>
+                        </div>
                     </div>
-                </div>
                 </div>               
             </li>`;
             });
         }
         else {
-            todolist += 'Nothing is on your to-do list. Nice work!';
+            todolist += '<div class="divempty">Nothing is on your to-do list. Nice work!</div>';
         }
         todolist += '</div>';
         todoListdiv.innerHTML = todolist;
@@ -148,15 +181,18 @@
 
 
     function updatePaginationButtons(totalItems) {
-        const totalPages = Math.ceil(totalItems / itemsPerPage);
         const pageInfo = document.getElementById("pageInfo");
+        const totalPages = Math.ceil(totalItems / itemsPerPage);
 
-        prevButton.disabled = currentPage === 1;
-        nextButton.disabled = currentPage === totalPages;
-
+        prevButton.disabled = currentPage === 1 || totalItems === 0;
+        nextButton.disabled = currentPage === totalPages || totalItems === 0;
+        prevButton.hidden = totalItems === 0;
+        nextButton.hidden = totalItems === 0;
+        pageInfo.hidden = totalItems === 0;
         pageInfo.innerHTML = `Page <span class="current-page">${currentPage}</span> of <span class="total-pages">${totalPages}</span>`;
 
     }
+
     document.getElementById('nextButton').addEventListener('click', showNextPage);
     document.getElementById('prevButton').addEventListener('click', showPrevPage);
     function showNextPage() {
@@ -168,31 +204,31 @@
         currentPage--;
         renderTodos();
     }
-    window.onclick = function(event) {
+    window.onclick = function (event) {
         if (!event.target.matches('.dropbtn')) {
-          var dropdowns = document.getElementsByClassName("dropdown-content");
-          for (var i = 0; i < dropdowns.length; i++) {
-            var openDropdown = dropdowns[i];
-            if (openDropdown.style.display === 'block') {
-              openDropdown.style.display = 'none';
+            var dropdowns = document.getElementsByClassName("dropdown-content");
+            for (var i = 0; i < dropdowns.length; i++) {
+                var openDropdown = dropdowns[i];
+                if (openDropdown.style.display === 'block') {
+                    openDropdown.style.display = 'none';
+                }
             }
-          }
         }
-      }
+    }
 
-      var dropdownContent = document.getElementById('dropdownContent');
+    var dropdownContent = document.getElementById('dropdownContent');
     var dropdownBtn = document.getElementById('dropdownBtn');
 
-    dropdownContent.addEventListener('click', function(event) {
+    dropdownContent.addEventListener('click', function (event) {
         if (event.target.tagName === 'A') {
             event.preventDefault();
             var selectedOption = event.target.innerText;
             dropdownBtn.innerText = selectedOption;
             dropdownContent.style.display = 'none';
         }
-        
+
     });
-    dropdownBtn.addEventListener('click', function(event) {
+    dropdownBtn.addEventListener('click', function (event) {
         event.preventDefault();
         dropdownContent.style.display = dropdownContent.style.display === 'block' ? 'none' : 'block';
     });
@@ -202,15 +238,15 @@
     var infoIcon = document.querySelector(".info-icon");
     var span = document.getElementsByClassName("close")[0];
 
-    infoIcon.onclick = function() {
+    infoIcon.onclick = function () {
         modal.style.display = "block";
     }
 
-    span.onclick = function() {
+    span.onclick = function () {
         modal.style.display = "none";
     }
 
-    window.onclick = function(event) {
+    window.onclick = function (event) {
         if (event.target == modal) {
             modal.style.display = "none";
         }
