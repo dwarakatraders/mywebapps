@@ -72,7 +72,7 @@ function bindBooks(arrBook) {
     if (arrBook.length > 0) {
         booklist += '<tr><th></th><th>Book Name</th><th>Author</th><th>Status</th><th>Remove</th><th>Edit</th></tr>'
         arrBook.forEach((items) => {
-            booklist += '<tr class="row"><td>&nbsp;</td><td>' + items.name + '</td><td class="text-left">' + items.author + '</td><td class="text-left">' + items.status + '</td><td class="text-left pad-left-10"><i class="fa fa-trash-o delete" onClick="deleteBook(' + items.id + ')"></i></td><td class="text-left pad-left-10"><i class="fa fa-edit delete" onClick="editBook(' + items.id + ',\'' + items.name.replaceAll("'", "\\'") + '\',\'' + items.author.replaceAll("'", "\\'") + '\',\'' + items.status + '\',\'' + items.pages + '\');"></i></td></tr>';
+            booklist += '<tr class="row"><td>&nbsp;</td><td>' + items.name + '</td><td class="text-left">' + items.author + '</td><td class="text-left">' + items.status + '</td><td class="text-left pad-left-10"><i class="fa fa-trash-o delete" onClick="deleteBook(' + items.id + ')"></i></td><td class="text-left pad-left-10"><i class="fa fa-edit delete" onClick="editBook(' + items.id + ');"></i></td></tr>';
         });
     }
     else {
@@ -100,8 +100,9 @@ function deleteBook(id) {
     }
 }
 
-function editBook(id, name, author, status, pages) {
+function editBook(id) {
     resetSearch();
+    let book = arrayBooks.find(book => book.id == id);
     document.getElementById('myForm').style.display = 'block';
     document.getElementById('divpage').style.display = 'none';
     
@@ -109,18 +110,18 @@ function editBook(id, name, author, status, pages) {
     document.getElementById("divadd").style.display = 'none';
 
     document.getElementById('id').textContent = id;
-    document.getElementById('inbookname').value = name;
-    document.getElementById('inauthorname').value = author;
-    document.getElementById('innopages').value = pages;
-    document.getElementById('rdcheckin').checked = status == 'Checked-in' ? true : false;
-    document.getElementById('rdcheckout').checked = status == 'Checked-out' ? true : false;
+    document.getElementById('inbookname').value = book.name;
+    document.getElementById('inauthorname').value = book.author;
+    document.getElementById('innopages').value = book.pages;
+    document.getElementById('rdcheckin').checked = book.status == 'Checked-in' ? true : false;
+    document.getElementById('rdcheckout').checked = book.status == 'Checked-out' ? true : false;
 }
 
 function saveBook() {
     resetSearch();
     let inid = document.getElementById('id').textContent;
-    let inname = document.getElementById('inbookname').value;
-    let inauthor = document.getElementById('inauthorname').value;
+    let inname = escapeHTML(document.getElementById('inbookname').value);
+    let inauthor = escapeHTML(document.getElementById('inauthorname').value);
     let inpages = document.getElementById('innopages').value;
     let instatus = (document.getElementById('rdcheckin').checked) ? "Checked-in" : "Checked-out";
 
@@ -168,11 +169,20 @@ function addBook(id, name, author, status, pages) {
         document.getElementById("lblnopages").style.display = 'none';
         let inid = arrayBooks[arrayBooks.length - 1].id + 1;
         arrayBooks.push({ id: inid, name: name, status: status, author: author, pages: pages });
+        console.log(arrayBooks);
         displayBooks();
     }
    
 
 }
+
+
+function escapeHTML(html) {
+    const div = document.createElement('div');
+    div.appendChild(document.createTextNode(html));
+    return div.innerHTML;
+}
+
 
 function updateBook(id, name, author, status, pages) {
     let i = arrayBooks.length;

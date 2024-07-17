@@ -31,7 +31,7 @@
         const assignto = document.getElementById('dropdownBtn').innerText === 'Assign to' ? 'Unassigned' : document.getElementById('dropdownBtn').innerText;
         if (task) {
             let toDoData = {
-                task: task,
+                task: escapeHTML(task),
                 id: newId,
                 status: "Open",
                 assignto: assignto,
@@ -48,6 +48,12 @@
         }
     });
 
+    function escapeHTML(html) {
+        const div = document.createElement('div');
+        div.appendChild(document.createTextNode(html));
+        return div.innerHTML;
+    }
+    
     filterForm.addEventListener("change", () => {
         currentPage = 1; // Reset currentPage when filter changes
         renderTodos();
