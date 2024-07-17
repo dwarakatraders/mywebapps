@@ -53,7 +53,7 @@
         div.appendChild(document.createTextNode(html));
         return div.innerHTML;
     }
-    
+
     filterForm.addEventListener("change", () => {
         currentPage = 1; // Reset currentPage when filter changes
         renderTodos();
@@ -63,19 +63,40 @@
     todoListdiv.addEventListener("click", function (event) {
         if (event.target.classList.contains('delete')) {
             const id = parseInt(event.target.getAttribute('data-id'));
-            deleteToDo(id);
+            if (id === 0 || isNaN(id)) {
+                confirm("The task ID is invalid");
+            }
+            else {
+                deleteToDo(id);
+            }
         } else if (event.target.classList.contains('complete-task-link')) {
             const id = parseInt(event.target.getAttribute('data-id'));
-            updateToDo(id, true); // Pass true to mark as completed
+            if (id === 0 || isNaN(id)) {
+                confirm("The task ID is invalid");
+            }
+            else {
+                updateToDo(id, true); // Pass true to mark as completed
+            }
         } else if (event.target.classList.contains('reopen-task-link')) {
             const id = parseInt(event.target.getAttribute('data-id'));
-            updateToDo(id, false); // Pass false to reopen task
+            if (id === 0 || isNaN(id)) {
+                confirm("The task ID is invalid");
+            }
+            else {
+                updateToDo(id, false); // Pass false to reopen task
+            }
+
         } else if (event.target.classList.contains('change-assignee-link')) {
             const id = parseInt(event.target.getAttribute('data-id'));
-            const assigneeDropdown = document.querySelector(`.assignee-dropdown[data-id="${id}"]`);
-            const assigneeName = document.getElementById("passignee");
-            assigneeDropdown.style.display = 'block';
-            assigneeName.style.display='none';
+            if (id === 0 || isNaN(id)) {
+                confirm("The task ID is invalid");
+            }
+            else {
+                const assigneeDropdown = document.querySelector(`.assignee-dropdown[data-id="${id}"]`);
+                const assigneeName = document.getElementById("passignee");
+                assigneeDropdown.style.display = 'block';
+                assigneeName.style.display = 'none';
+            }
         }
         else if (event.target.classList.contains('toggle-details-btn') || event.target.classList.contains('fa')) {
             const taskItem = event.target.closest('.task-item');
@@ -130,6 +151,10 @@
             filteredTodos.sort((a, b) => a.task.localeCompare(b.task));
         } else if (sortField === "createdon") {
             filteredTodos.sort((a, b) => parseDate(b.createdon) - parseDate(a.createdon));
+        }
+        else
+        {
+            confirm("The sort field is invalid");
         }
 
         const startIndex = (currentPage - 1) * itemsPerPage;

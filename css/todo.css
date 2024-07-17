@@ -715,4 +715,8 @@ button:disabled:hover {
     .info-icon {
         top: 160px;
     }
+    .change-assignee
+    {
+        width: 65%;
+    }
 }
